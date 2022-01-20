@@ -5,8 +5,20 @@ import { Tab2Page } from './tab2.page';
 const routes: Routes = [
   {
     path: '',
-    component: Tab2Page,
-  }
+    component: Tab2Page, 
+    // children:[
+    //   {
+    //     path: 'edit/:id',
+    //     loadChildren: () => import('../edit/edit.module').then(m => m.EditPageModule)
+    //   }
+    // ]
+  },
+  
+  // {
+  //   path: '',
+  //   redirectTo: 'tab/tab2/edit',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({

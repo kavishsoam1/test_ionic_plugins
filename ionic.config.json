@@ -1,7 +1,10 @@
 {
   "name": "ionicDummyTest",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular"
 }
