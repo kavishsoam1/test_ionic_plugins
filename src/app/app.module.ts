@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator/ngx';
+import { DocumentScanner } from '@awesome-cordova-plugins/document-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator/ngx';
     SQLite,
     SQLitePorter,
     Camera,
-    PDFGenerator, 
+    PDFGenerator,
+    DocumentScanner, 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

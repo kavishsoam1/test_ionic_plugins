@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Camera, CameraOptions } from '@awesome-cordova-plugins/camera/ngx';
 import { DbService } from '../service/db.service';
-
+import { DocumentScanner, DocumentScannerOptions } from '@awesome-cordova-plugins/document-scanner/ngx';
+import { Platform } from '@ionic/angular';
 @Component({
   selector: 'app-explore-container',
   templateUrl: './explore-container.component.html',
@@ -24,14 +25,23 @@ export class ExploreContainerComponent implements OnInit {
   
   mainForm: FormGroup;
   Data: any[] = []
-
+  pdfData:any;
+  scannedImage: string;
   constructor(
     private db: DbService,
     public formBuilder: FormBuilder,
     private toast: ToastController,
+    private documentScanner: DocumentScanner,
     private router: Router,
-    private camera: Camera
+    private camera: Camera,
+    private platform : Platform
   ) { }
+  opts: DocumentScannerOptions = {
+    sourceType : 1,
+    fileName : '.png',
+    quality : 5.0,
+    returnBase64 : true
+  };
 
   captureImage() {
     this.camera.getPicture(this.options).then((imageData) => {
@@ -83,6 +93,17 @@ export class ExploreContainerComponent implements OnInit {
 
   navigate(id) {
     this.router.navigate(['edit',id]);
+  }
+
+  openSccanner() {
+    let opts: DocumentScannerOptions = {returnBase64 : true};
+    this.documentScanner.scanDoc(opts).then(res => {
+      console.log('scanner_succ ',res);
+      let base64Image = 'data:image/jpeg;base64,' + res;
+      this.scannedImage = base64Image;
+    }).catch(err => {
+      console.log('scanner_err ==>',err);
+    });
   }
 
 

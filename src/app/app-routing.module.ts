@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'edit/:id',
     loadChildren: () => import('./edit/edit.module').then(m => m.EditPageModule)
   },
+  {
+    path: 'scanner',
+    loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule)
+  },
 ];
 @NgModule({
   imports: [

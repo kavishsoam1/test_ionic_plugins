@@ -11,6 +11,12 @@
    <img [src]="clickedImage" />
    
   </ion-list>
+  <ion-list>
+    <ion-button (click)="openSccanner()">Doc Scanner</ion-button>
+
+    <img [src]="scannedImage" />
+  </ion-list>
+
 </ion-content>
 
 <ion-content *ngIf="name == 'Tab 2 page'">  
