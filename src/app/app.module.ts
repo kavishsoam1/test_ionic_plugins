@@ -10,7 +10,10 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PDFGenerator } from '@awesome-cordova-plugins/pdf-generator/ngx';
 import { DocumentScanner } from '@awesome-cordova-plugins/document-scanner/ngx';
-
+import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
+import { BuildInfo } from '@awesome-cordova-plugins/build-info/ngx';
+import { Network } from '@awesome-cordova-plugins/network/ngx';
+import { SyncService } from './service/sync.service';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -20,7 +23,10 @@ import { DocumentScanner } from '@awesome-cordova-plugins/document-scanner/ngx';
     SQLitePorter,
     Camera,
     PDFGenerator,
-    DocumentScanner, 
+    DocumentScanner,
+    InAppBrowser,
+    BuildInfo,
+    Network,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

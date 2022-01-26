@@ -1,0 +1,40 @@
+<app-sidenav></app-sidenav>
+
+<ion-content>
+
+  
+<ion-chip [disabled]="true" color="danger">
+  <ion-label>Error</ion-label>
+</ion-chip>
+<p>
+  After installation of this plugin with recent version of project, Build preparation got failed with following error <br>
+  FAILURE: Build completed with 2 failures.<br>
+  1: Task failed with an exception.
+  <br>
+  * What went wrong:
+  A problem occurred evaluating script.
+> Could not find method compile() for arguments [com.nononsenseapps:filepicker:3.1.0]
+
+2: Task failed with an exception.
+<br>
+* What went wrong:
+A problem occurred configuring project ':app'.
+> com.android.builder.errors.EvalIssueException: compileSdkVersion is not specified. Please add it to build.gradle
+</p>
+<p>Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.</p>
+<br>
+
+<ion-chip [disabled]="true" color="danger">
+  <ion-label>Replacements</ion-label>
+</ion-chip>
+
+<h2>
+  capacitor file picker plugin
+</h2>
+<h4>
+  A capacitor file picker plugin for android
+</h4>
+  <a href="https://github.com/codewaseem/capacitor-filepicker-plugin">https://github.com/codewaseem/capacitor-filepicker-plugin</a>
+  <br>
+
+</ion-content>

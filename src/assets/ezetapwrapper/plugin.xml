@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-ezetapwrapper" version="0.1.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>EzeTapWrapper</name>
+    <js-module name="EzeTapWrapper" src="www/EzeTapWrapper.js">
+        <clobbers target="EzeTapWrapper" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <preference name="AndroidXEnabled" value="true" />
+            <feature name="EzeTapWrapper">
+                <param name="android-package" value="com.tycho.ezetapcordovasdk.EzeTapWrapper" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="com.tycho.ezetapcordovasdk.PaymentActivity" android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.NoActionBar" />
+        </config-file>
+        <source-file src="src/android/com/tycho/ezetapcordovasdk/EzeTapWrapper.java" target-dir="src/com/tycho/ezetapcordovasdk" />
+        <source-file src="src/android/com/tycho/ezetapcordovasdk/PaymentActivity.java" target-dir="src/com/tycho/ezetapcordovasdk" />
+        <source-file src="src/android/com/tycho/ezetapcordovasdk/PaymentConfig.java" target-dir="src/com/tycho/ezetapcordovasdk" />
+        <framework src="src/android/ezetap.gradle" custom="true" type="gradleReference"/>
+        <resource-file src="src/android/ezetapandroidsdk-release.aar" target="libs/ezetapandroidsdk-release.aar" />
+    </platform>
+</plugin>

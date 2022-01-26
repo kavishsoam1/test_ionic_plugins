@@ -1,0 +1,28 @@
+<app-sidenav></app-sidenav>
+
+<ion-content>
+<p>
+  <ion-chip [disabled]="true" color="success">
+    <ion-label>Use Case</ion-label>
+  </ion-chip>
+</p>
+<br>
+
+<h2>
+  Build Info 
+</h2>
+<h4>
+  This plugin provides build information.
+</h4>
+<h6>
+  <a href=" https://github.com/lynrin/cordova-plugin-buildinfo"> https://github.com/lynrin/cordova-plugin-buildinfo</a>
+  <br>
+</h6>
+
+<ion-content>
+  <ion-list>
+    {{this.BuildInfo | json}}
+  </ion-list>
+</ion-content>
+
+</ion-content>

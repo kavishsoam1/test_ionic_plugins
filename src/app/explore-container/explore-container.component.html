@@ -17,6 +17,18 @@
     <img [src]="scannedImage" />
   </ion-list>
 
+  <ion-list>
+    <ion-button (click)="onPay(123)">
+      Payment
+    </ion-button>
+  </ion-list>
+
+  <ion-list>
+    <div *ngFor="let item of applicationStatus">
+      <p>{{item}}</p>
+    </div>
+  </ion-list>
+
 </ion-content>
 
 <ion-content *ngIf="name == 'Tab 2 page'">  
