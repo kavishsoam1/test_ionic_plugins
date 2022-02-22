@@ -95,7 +95,7 @@ import PouchDB from 'node_modules/pouchdb';
 
 
     replicate(pouchObj, options) { 
-        console.log(pouchObj,options);
+        console.log('kavish===>>>>',pouchObj,options);
         // console.log("failedSyncAttempts : ", failedSyncAttempts);
         let db : any;
         db = PouchDB.replicate(pouchObj.remote, pouchObj.local, options)

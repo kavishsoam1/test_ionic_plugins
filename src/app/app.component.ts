@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AsyncPromiseService } from './service/async-promise.service';
+import { IndexedDbService } from './service/indexdb.service';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor() {}
+  constructor(private service: AsyncPromiseService, private syncService: IndexedDbService) {
+    this.syncService.getDataFromTable('occupationMaster', 'value', 'AC')
+  }
 
   activePageTitle = 'Blog';
 
@@ -15,177 +19,183 @@ export class AppComponent {
       title: 'Home',
       url: 'tabs/tab1',
       icon: 'home',
-      color : ''
+      color: ''
+    },
+    {
+      title: 'webview-Iframe',
+      url: '/iframe',
+      icon: 'file-tray-full',
+      color: 'primary'
     },
     {
       title: 'com-badrit-base64',
       url: '/com-bandrit-base64',
       icon: 'file-tray-full',
-      color : 'primary'
+      color: 'primary'
     },
     {
       title: 'com.gkcgautam.asset2sd',
       url: '/com-gkcgautam-asset2sd',
       icon: 'file-tray-full',
-      color : 'primary'
+      color: 'primary'
     },
     {
       title: 'com.mantra.mfs100',
       url: '/com-mantra-mfs100',
       icon: 'file-tray-full',
-      color : 'primary'
+      color: 'primary'
     },
     {
       title: 'com.ourcodeworld.plugins.Filebrowser',
-      url: '/com-ourcodeworld-plugins-Filebrowser',
+      url: '/filebrowser',
       icon: 'file-tray-full',
-      color : 'primary'
+      color: 'primary'
     },
     {
       title: 'com.payment.billdesk',
       url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'danger' 
+      color: 'danger'
     },
     {
       title: 'cordova-base64-to-gallery',
       url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'primary'
+      color: 'primary'
     },
     {
       title: 'cordova-filepath-resolver',
       url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'primary'
+      color: 'primary'
     },
     {
       title: 'cordova-plugin-background-mode',
       url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-browsertab',
       url: '/inapp-browser',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-buildinfo',
       url: '/build-information',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-camera',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-compat',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-crop',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-datepicker',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-device',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-file',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-file-opener2',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-file-transfer',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-filechooser',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-google-analytics',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-inappbrowser',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-jumbomode',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-mfilechooser',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-network-information',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'cordova-plugin-splashscreen',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
     },
     {
       title: 'cordova-plugin-whitelist',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
 
     },
     {
       title: 'cordova-sqlite-storage',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full',
-      color : 'success'
+      color: 'success'
 
     },
     {
       title: 'sqli-cordova-disk-space-plugin',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'file-tray-full'
     },
     {
       title: 'Details',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'cube'
     },
     {
       title: 'Versions',
-      url: '/contact',
+      url: '/tabs/tab1',
       icon: 'information-circle'
     }
   ];
-  
+
 }

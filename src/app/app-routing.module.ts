@@ -43,7 +43,7 @@ const routes: Routes = [
     loadChildren: () => import('./shared/com-mantra-mfs100/com-mantra-mfs100.module').then( m => m.ComMantraMfs100PageModule)
   },
   {
-    path: 'com-ourcodeworld-plugins-Filebrowser',
+    path: 'filebrowser',
     loadChildren: () => import('./shared/ourcodeworld-filebrowser/ourcodeworld-filebrowser.module').then( m => m.OurcodeworldFilebrowserPageModule)
   },
   {
@@ -53,6 +53,10 @@ const routes: Routes = [
   {
     path: 'build-information',
     loadChildren: () => import('./shared/build-information/build-information.module').then( m => m.BuildInformationPageModule)
+  },
+  {
+    path: 'iframe',
+    loadChildren: () => import('./shared/iframe/iframe.module').then( m => m.IframePageModule)
   },
 ];
 @NgModule({

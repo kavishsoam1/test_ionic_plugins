@@ -34,7 +34,8 @@ export const environment = {
     status: 'Delivered',
     delivery_status: 'Unassigned',
     createdAt: 'Nov 3, 2020 3:49 PM'
-  }
+  },
+  serverUrl : ''
 };
 
 /*

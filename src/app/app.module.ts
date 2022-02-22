@@ -13,6 +13,7 @@ import { DocumentScanner } from '@awesome-cordova-plugins/document-scanner/ngx';
 import { InAppBrowser } from '@awesome-cordova-plugins/in-app-browser/ngx';
 import { BuildInfo } from '@awesome-cordova-plugins/build-info/ngx';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
+import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 import { SyncService } from './service/sync.service';
 @NgModule({
   declarations: [AppComponent],
@@ -27,6 +28,7 @@ import { SyncService } from './service/sync.service';
     InAppBrowser,
     BuildInfo,
     Network,
+    BackgroundMode,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
