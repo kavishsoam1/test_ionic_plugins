@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { SQLite,  } from '@awesome-cordova-plugins/sqlite/ngx';
+import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { SQLitePorter } from '@awesome-cordova-plugins/sqlite-porter/ngx';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
@@ -15,10 +15,22 @@ import { BuildInfo } from '@awesome-cordova-plugins/build-info/ngx';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { BackgroundMode } from '@awesome-cordova-plugins/background-mode/ngx';
 import { SyncService } from './service/sync.service';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+// import { makePayment } from 'plugins/com.payment.billdesk/www/payment.js';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+    }),
+  ],
   providers: [
     SQLite,
     SQLitePorter,
@@ -28,8 +40,10 @@ import { SyncService } from './service/sync.service';
     InAppBrowser,
     BuildInfo,
     Network,
+    // makePayment,
     BackgroundMode,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

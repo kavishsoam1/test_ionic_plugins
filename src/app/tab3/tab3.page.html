@@ -1,3 +1,46 @@
+<style type="text/css">
+  table {
+      margin-bottom: 20px;
+  }
+  
+  table td {
+      color: #ffffff;
+  }
+  
+  .heading-blue {
+      width: 100%;
+  }
+  
+  .colorWhite {
+      color: #ffffff;
+  }
+  
+  .tablePremiumPaymentDetails {
+      position: relative;
+      padding: 6px;
+  }
+  
+  .tablePremiumPaymentDetails td {
+      border: 1px solid #ffffff;
+      padding: 6px;
+  }
+  
+  .backButton {
+      padding-left: 2px !important;
+      padding-right: 10px !important;
+      z-index: 10 !important;
+      color: #ffffff !important;
+      font-size: 26px !important;
+  }
+  /*.paddingfix {
+  padding: 8px;
+}*/
+  
+  .overlap {
+      margin-top: 20px;
+  }
+</style>
+
 <!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -17,17 +60,17 @@
 </ion-content> -->
 
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" (click)="downloadInvoice()">
     <!-- <ion-buttons (click)="closeModal()" slot="start">
       <ion-button slot="icon">
         <ion-icon class="icon" name="arrow-back-outline"></ion-icon>
       </ion-button>
     </ion-buttons> -->
-    <ion-title class="title-ios ion-text-capitalize">Order Invoice</ion-title>
+    <ion-title class="title-ios ion-text-capitalize" >Order Invoice</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div id="PrintInvoice" class="invoice-box"
+  <!-- <div id="PrintInvoice" class="invoice-box"
     style="max-width: 800px;margin: auto;padding: 30px;border: 1px solid #eee;box-shadow: 0 0 10px rgba(0, 0, 0, .15);font-size: 16px;line-height: 24px;font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;color: #555;">
     <table cellpadding="0" cellspacing="0" style="width: 100%;line-height: inherit;text-align: left;">
       <tr class="top">
@@ -117,7 +160,187 @@
         </td>
       </tr>
     </table>
+  </div> -->
+  <!-- <div   id="PrintInvoice" class="invoice-box"> -->
+  <!-- <div class="row">
+      <div class="col">
+          <a class="button icon-left ion-chevron-left button-clear button-dark backButton" ui-sref="home.eApplication.upload.success">&nbsp;Back</a>
+      </div>
+  </div> -->
+
+  <div class="row" id="PrintInvoice">
+      <div class="col"   class="invoice-box overlap">
+        <table style="width:100%">
+          <tr>
+              <td style="text-align:left">
+                  <img src="IMG_PATH/dhfl_logo.png" width="190" />
+              </td>
+              <td>
+                  <div style="text-align: right;">
+                      <strong>
+                          Pramerica Life Insurance Limited
+                          <br />
+                          &nbsp;
+                      </strong> DLF Cyber City, Phase-III,
+                      <br /> &nbsp;Gurgaon-122002
+                      <br /> &nbsp;Tel +91 124 4697000, Fax +91 124 4697200
+                  </div>
+              </td>
+          </tr>
+      </table>
+      <table border="0" style="width:100%" class="heading-blue">
+          <tr>
+              <td colspan="4" style="text-align: center;color:white;width:1%;background-color:#0074BC;padding: 10px;font-size:18px;font-weight:400!important;">Acknowledgement Receipt - First Proposal Deposit</td>
+          </tr>
+          <tr>
+              <td>&nbsp;</td>
+          </tr>
+          <tr ng-if="!isCombo">
+              <td>
+                  Proposal Number
+              </td>
+              <td>{{ProposalNumber}}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr ng-if="isCombo">
+              <td>
+                  Solution Id
+              </td>
+              <td>{{calculaterData?.SolutionId}}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>
+                  Receipt Date
+              </td>
+              <td>{{recipts?.Date}}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>
+                  Proposed Policy Holder Name
+              </td>
+              <td>{{txtCalName}}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr ng-if="!isDefence">
+              <td>
+                  Sales Person Name
+              </td>
+              <td>{{agentName || "-" }}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr ng-if="isDefence">
+              <td>
+                  Sales Person Name
+              </td>
+              <td>{{agentName_payment_receipt || "-" }}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr ng-if="!isDefence">
+              <td>
+                  Sales Person Code
+              </td>
+              <td>{{agentCode || "-"}}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr ng-if="isDefence">
+              <td>
+                  Sales Person Code
+              </td>
+              <td>{{agentCode_payment_receipt || "-"}}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>
+                  Plan
+              </td>
+              <td>{{calculaterData?.Userproduct.Name}}</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>
+                  Received with thanks from
+              </td>
+              <td>{{payerName ||'-'}}</td>
+              <td>&nbsp;</td>
+          </tr>
+      </table>
+      <table border="0" style="width:100%;" class="heading-blue">
+          <tr>
+              <td colspan="4" style="text-align: center;color:white ;width:1%;background-color:#0074BC;padding: 10px;font-size:18px;font-weight:400!important;">Premium Payment Details</td>
+          </tr>
+      </table>
+      <table style="border:thin;width:98%">
+          <tr>
+              <td colspan="4">
+                  <table border="1">
+                      <tr>
+                          <td style="text-align: center"><strong>Payment mode</strong></td>
+                          <td style="text-align: center"><strong>Instrument <br/>details</strong></td>
+                          <td style="text-align: center"><strong>Instrument <br/>Date</strong></td>
+                          <td style="text-align: center"><b>Amount Received<br />(Inclusive of GST <br />as applicable)</b></td>
+                          <td style="text-align: center"><strong>Bank Name and Location</strong></td>
+                      </tr>
+                      <tr ng-repeat="payment in eAppForm.multipleInstruments">
+                          <td>{{payment?.mode}}</td>
+                          <td>{{payment?.ddNo || '-'}}</td>
+                          <td>{{payment?.dateOfIssue || '-'}}</td>
+                          <td style="text-align: right">{{payment.amt}}</td>
+                          <td>{{payment.bankName || '-'}}</td>
+                      </tr>
+                  </table>
+              </td>
+          </tr>
+          <tr>
+              <td>Total Rupees :</td>
+              <td>{{netPayableAmount}}</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+          </tr>
+          <tr>
+              <td>Total amount in words:</td>
+              <td colspan="3">{{convertNumberToWords(netPayableAmount)}}</td>
+          </tr>
+          <tr>
+              <td colspan="4">&nbsp;</td>
+          </tr>
+          <tr>
+              <td colspan="4" style="text-align: center"><strong>TERMS AND CONDITIONS</strong></td>
+          </tr>
+          <tr>
+              <td colspan="4">1. Please contact us at : 1800-102-7070 or E-mail : contactus@pramericalife.in in case you do not receive information on the first premium receipt or policy document within 60 days from the date of issuance of this provisional reciept or current
+                  status of your proposal.</td>
+          </tr>
+          <tr>
+              <td colspan="4">2. Amount held as proposal deposit does not accrue any interest.The proposal deposit received shall be applied towards premium and Goods &amp; Service Tax as applicable by Pramerica Life Insurance Limited from the date of acceptance of risk/issuance
+                  of the policy</td>
+          </tr>
+          <tr>
+              <td colspan="4">3. This acknowledgement receipt cannot be used for Tax Benefits purpose.</td>
+          </tr>
+          <tr>
+              <td colspan="4">4. Please visit : www.pramericalife.in to know more about us and our product.</td>
+          </tr>
+          <tr>
+              <td colspan="4">This is a computer generated receipt and does not require a signature.</td>
+          </tr>
+      </table>
+      </div>
   </div>
+  <div>
+    <ion-button (click)="downloadInvoice()">Download PDF</ion-button>
+  </div>
+  <div>
+    <br>
+  </div>
+  <div>
+    <br>
+  </div>
+  <div>
+    <br>
+  </div>
+<!-- </div> -->
 </ion-content>
 
 <ion-footer (click)="downloadInvoice()">
@@ -127,3 +350,6 @@
     </div>
   </ion-toolbar>
 </ion-footer>
+
+
+

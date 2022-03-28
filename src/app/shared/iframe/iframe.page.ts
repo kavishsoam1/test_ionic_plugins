@@ -6,16 +6,14 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./iframe.page.scss'],
 })
 export class IframePage implements OnInit {
+  constructor(public sanitizer: DomSanitizer) {}
 
-  constructor(
-    public sanitizer: DomSanitizer
-  ) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   openURL() {
-    return this.sanitizer.bypassSecurityTrustResourceUrl('https://cordova.apache.org/docs/en/10.x/guide/cli/');
+    // https://pramericalife.in:9098/LMS/MobileVerification.aspx
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      'https://pramericalife.in:9098/LMS/MobileVerification.aspx'
+    );
   }
-
 }
