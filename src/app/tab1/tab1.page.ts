@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import * as payment from '../../../plugins/com.payment.billdesk/www/payment';
-// declare var payment: any;
-// declare var cordova: any;
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
