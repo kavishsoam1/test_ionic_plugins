@@ -3,7 +3,7 @@
 <ion-content>
 
   
-<ion-chip [disabled]="true" color="danger">
+<!-- <ion-chip [disabled]="true" color="danger">
   <ion-label>Error</ion-label>
 </ion-chip>
 <p>
@@ -35,6 +35,3145 @@ A problem occurred configuring project ':app'.
   A capacitor file picker plugin for android
 </h4>
   <a href="https://github.com/codewaseem/capacitor-filepicker-plugin">https://github.com/codewaseem/capacitor-filepicker-plugin</a>
-  <br>
+  <br> -->
+<div id="PrintInvoice2">
+  <table style="width: 100%;">
+    <tbody>
+        <tr>
+            <td style="text-align: left;font-size:11px">
+                <img src="https://dummyimage.com/300.png/09f/fff" width="190">
+            </td>
+            <td style="text-align: right;float:right"> Proposal No.
+                <strong>{{applicationNoForPdf||""}}</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="width: 100%; border: 1px solid black; font-size:11px; margin-top:10px" cellspacing='0' cellpading='3'>
+    <tr>
+        <td style="width:80%;margin-top:10px">
+            <div style="height:3px">
+
+            </div>
+            <span style="font-size:11px;">Pramerica Life Insurance Limited (Erstwhile DHFL Pramerica Life Insurance Company Ltd)<br></span>
+            <div style="height:10px">
+
+            </div>
+            <span style="font-size:11px;">IN UNIT LINKED INSURANCE PRODUCTS, THE
+                INVESTMENT RISK IN THE INVESTMENT PORTFOLIO IS BORNE BY THE
+                POLICYHOLDER<br></span>
+            <div style="height:8px">
+
+            </div>
+            <span>Note: Please read carefully all the instructions
+                mentioned at the back before filling up this proposal form. Please
+                disclose in this application form all material facts which
+                shall form the basis of our contract, otherwise the Policy issued may
+                be void or voidable. If you are in doubt whether a fact is material,
+                please disclose it <br></span>
+            <span style="font-size:11px;">
+                The company shall be informed if any information or certification on this form becomes incorrect,
+                within 30 days of applicants knowledge of such change.
+            </span>
+            <div style="height:5px">
+
+            </div>
+
+            <table style="width:100%; font-size: 11px">
+                <tr ng-if="bancaType">
+                    <td style="width:10%">
+                        Office use:
+                    </td>
+                    <td style="width:45%">
+                        Sales Person / Corporate Partner Code &nbsp;&nbsp;&nbsp;<strong>{{lcCodeForBanca||""}}</strong>
+                    </td>
+                    <td style="font-size:11px;width: 25%">
+                        Channel:<span ng-if="IsBancaEmp && parentChannel != 'UCB'"> <strong>Banca-{{agentType||""}}</strong></span>
+                        <span ng-if="parentChannel == 'UCB' && IsBancaEmp"> <strong>{{agentType||""}} - Retail</strong></span>
+                        <span ng-if="!IsBancaEmp"><strong>DHFL BU-{{partnerCode}}</strong></span>
+                    </td>
+                    <td style="font-size:11px;width:10%">
+                        Urban:&nbsp;<strong>Yes</strong>
+                    </td>
+
+                </tr>
+                <tr ng-if="bancaType">
+                    <td style="width:10%">
+                    </td>
+                    <td style="width:45%">
+                        Sales Person / Corporate Partner Name &nbsp;&nbsp;&nbsp;<strong>{{lcCodeAgentName||""}}</strong>
+                    </td>
+
+                    <td style="font-size:11px;width:25%">Branch:&nbsp;<strong>{{branchName||""}}</strong></td>
+                    <td style="font-size:11px;width:10%">
+                        Rural:&nbsp;<strong>No</strong>
+                    </td>
+                </tr>
+                <tr ng-if="!bancaType">
+                    <td style="width:10%">
+                        Office use:
+                    </td>
+                    <td style="width:45%">
+                        Sales Person / Corporate Partner Code &nbsp;&nbsp;&nbsp;<strong>{{agentInfo?.AgentCode||""}}</strong>
+                    </td>
+                    <td style="font-size:11px;width:25%">
+                        Channel: <span ng-if='!isDefence'><strong>{{agentInfo?.ChannelId||""}}</strong></span>
+                        <span ng-if='isDefence && agentInfo.otherDetails.CHANNEL_CODE=="DEF"'><strong>Prahri</strong></span>
+                        <span ng-if='isDefence && agentInfo.otherDetails.CHANNEL_CODE=="PRM"'><strong>Param</strong></span>
+                        <span ng-if='isDefence && agentInfo.otherDetails.CHANNEL_CODE=="PRK"'><strong>Prerak</strong></span>
+                    </td>
+                    <td style="font-size:11px;width:10%">
+                        Urban:<strong>Yes</strong>
+
+                    </td>
+                </tr>
+                <tr ng-if="!bancaType">
+                    <td style="width:10%">
+                    </td>
+                    <td style="width:45%">
+                        Sales Person / Corporate Partner Name &nbsp;&nbsp;&nbsp; <strong>{{agentInfo?.Name||""}}</strong>
+                    </td>
+                    <td style="font-size:11px;width:25%">Branch:&nbsp;&nbsp;
+                        <strong>{{agentInfo?.Branch||""}}</strong>
+                    </td>
+
+                    <td style="font-size:11px;width:10%">
+                        Rural:<strong>No</strong>
+
+                    </td>
+
+                </tr>
+            </table>
+        </td>
+        <td style="width:20%">
+            <img style="float:right" src="https://dummyimage.com/100x100/000/fff" height="150px" width="150px" id="applicationFormPhoto">
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <table style="width: 100%;font-size:12px;border-top:1px solid #333;border-collapse:collapse" cellpadding="4">
+                <tbody>
+                    <tr ng-if="!ProposerExist">
+                        <td style="font-size:11px;width:50%">
+                            CKYC TYPE:
+                            <span ng-if="eAppForm.personalDtl.customer.dtl.ckycExist"><strong>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Existing</strong></span>
+                            <span ng-if="!eAppForm.personalDtl.customer.dtl.ckycExist"><strong>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; New</strong></span>
+                        </td>
+                        <td style="font-size:11px;width:50%">
+                            Account Type:
+                            <span ng-if="eAppForm.personalDtl.customer.dtl.ckycExist"><strong> &nbsp;&nbsp;
+                                    {{eAppForm?.personalDtl?.customer?.dtl?.ckycType
+                                    || ""}}</strong></span>
+                            <span ng-if="!eAppForm.personalDtl.customer.dtl.ckycExist"><strong></strong></span>
+                        </td>
+                        <td style="width:0%"></td>
+                    </tr>
+                    <tr ng-if="!ProposerExist">
+                        <td style="font-size:11px;width:50%">
+                            CKYC Number:
+                            <span ng-if="eAppForm.personalDtl.customer.dtl.ckycExist"><strong>&nbsp;&nbsp;&nbsp;&nbsp;{{eAppForm?.personalDtl?.customer?.dtl?.ckycNumber
+                                    || ""}}</strong></span>
+                            <span> (Mandatory for CKYC update request)
+                            </span>
+                            <span ng-if="!eAppForm.personalDtl.customer.dtl.ckycExist"><strong></strong></span>
+                        </td>
+                        <td style="font-size:11px;width:50%">
+                            Bank Sales Proposer: &nbsp;
+                            <strong></strong>
+                        </td>
+                        <td style="font-size:11px;width:0%"></td>
+                    </tr>
+                    <tr ng-if="ProposerExist">
+                        <td style="font-size:11px;width:50%">
+                            CKYC TYPE:
+                            <span ng-if="eAppForm.otherMemberDtl.customer.dtl.ckycExist"><strong>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Existing</strong></span>
+                            <span ng-if="!eAppForm.otherMemberDtl.customer.dtl.ckycExist"><strong>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New</strong></span>
+                        </td>
+                        <td style="font-size:11px;width:50%">
+                            Account Type:
+                            <span ng-if="eAppForm.otherMemberDtl.customer.dtl.ckycExist"> <strong>{{eAppForm?.otherMemberDtl?.customer?.dtl?.ckycType
+                                    || ""}}</strong></span>
+                            <span ng-if="!eAppForm.otherMemberDtl.customer.dtl.ckycExist"><strong></strong></span>
+                        </td>
+                        <td style="width:0%"></td>
+                    </tr>
+                    <tr ng-if="ProposerExist">
+                        <td style="font-size:11px;width:50%">
+                            CKYC Number:
+                            <span ng-if="eAppForm.otherMemberDtl.customer.dtl.ckycExist"><strong>&nbsp;&nbsp;&nbsp;&nbsp;{{eAppForm?.otherMemberDtl?.customer?.dtl?.ckycNumber
+                                    || ""}}</strong></span>
+                            <span> (Mandatory for CKYC update request)
+                            </span>
+                            <span ng-if="!eAppForm.otherMemberDtl.customer.dtl.ckycExist"><strong></strong></span>
+                        </td>
+
+
+                        <td style="font-size:11px;width:50%">
+                            Bank Sales Proposer: &nbsp;
+                            <strong></strong>
+                        </td>
+                        <td style="font-size:11px;width:0%"></td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:11px;width:50%">Type of Plan:&nbsp;<strong>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{typeOfPlan}}</strong>
+                        </td>
+                        <td style="font-size:11px;width:50%">
+                            Type of Cover: &nbsp;
+                            <strong>Individual</strong>
+                        </td>
+                        <td style="width:0%"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </td>
+    </tr>
+</table>
+
+<!-- </tr>
+</tbody>
+</table> -->
+<table style="width: 100%; border-collapse: collapse;font-size:11px;margin-top:13px" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td style="font-size:11px">
+                Existing Policy holder/applicant provide their details
+            </td>
+            <td style="text-align: left;font-size:11px">Policy</td>
+            <td style="text-align: left;font-size:11px">Application </td>
+            <td style="text-align: left;font-size:11px">Number: _____________ </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #333;font-size:11px;margin-top:15px" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="width: 50%;vertical-align: top;border-right: 1px solid #333">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="font-size:11px">
+                                <strong>Section I:</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size:11px;border-bottom:1px solid #333">
+                                <strong>Personal Details of Life to be Insured/Primary Annuitant</strong>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td style="width: 50%;vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="font-size:11px;">
+                                <strong>Section II:</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size:11px;border-bottom:1px solid #333">
+                                <strong>Details of the Proposer(if life assured different from proposer)</strong>
+
+                            </td>
+                          </tr>
+                          </tbody>
+                          </table>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            <!-- </td>
+        </tr> -->
+        <tr>
+            <td style="width: 50%;  border-right: 1px solid #333; vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">1. Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="3">
+                                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.title || ""}}&nbsp;{{capital?.LA?.fName||""}}
+                            &nbsp;{{capital?.LA?.lName}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">2. Maiden Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.maidenName||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">3. Father's Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.fatherName||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">4. Mother's Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.motherName || ""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">5. Spouse Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.spouseName || ""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">6. Date Of Birth:</td>
+                            <td style="font-size:11px" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.dob||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px;" colspan="2">7. Country of Birth:</td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{LA?.nationality=='Indian'?'India':LA?.countryName}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">8. Gender:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.gender||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">9. Marital Status:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.maritalStatus||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">10. US Person:</td>
+                            <td style="font-size:11px;text-transform: capitalize;">
+                                <strong colspan="2">{{eAppForm?.additionalDtls?.fatca?.isUsPerson?'Yes':'No'}}
+                        </strong> (If Yes, please fill FATCA / CRS certification)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">11. Nationality:</td>
+                            <td style="font-size:11px;text-transform: capitalize;">
+                                <strong colspan="2">{{LA?.nationality||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">12. Residential Status:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.countryName||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">13. Are you tax resident of any country other than India?</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{eAppForm?.additionalDtls?.fatca?.otherCountryTaxResident==0?'No':'Yes'}}</strong>
+                                <span>(If Yes, please fill FATCA / CRS certification)
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">14. Source of Income:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong></strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">15. Mobile (Mandatory):</td>
+                            <td style="font-size:11px" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.mobile||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;&nbsp;&nbsp; Alternate No.:</td>
+                            <td style="font-size:11px" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.landline||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">16. Email ID(Mandatory):</td>
+                            <td style="font-size:11px" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.email||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">17. Educational Qualification:</td>
+                            <td style="font-size:11px;text-transform: capitalize;">
+                                <strong colspan="2">{{LA?.education||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">18. PAN Number:</td>
+                            <td style="font-size:11px;text-transform: uppercase;" colspan="2">
+                                <strong>
+                            {{capital?.LA?.pan||''}}
+                        </strong>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="font-size:11px" colspan="2">19. Occupational Details:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.occupation||''}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;Name & Address of the Organization/Business:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.nameofOrg||''}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;Exact Nature of Duties:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.natureofDuties||''}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;Annual Gross Income(in Rs):</td>
+                            <td style="font-size:11px;" colspan="2">
+                                <span ng-if="eAppForm.personalDtl.otherDtl.profDtl.dtl.occupation!='ST'">
+                            <span ng-if="eAppForm.personalDtl.otherDtl.profDtl.dtl.annInc">
+                                <strong>&#8377;</strong>
+                            </span>
+                                <strong>
+                                {{eAppForm?.personalDtl?.otherDtl?.profDtl?.dtl?.annInc||''}}
+                            </strong>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">20. Age Proof:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.ageProof||""}}</strong>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </td>
+            <td style="width: 50%;vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">1. Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="3">
+                                <span ng-if="ProposerExist">
+                            <strong>{{eAppForm?.otherMemberDtl?.customer?.dtl?.title ||
+                                ""}}&nbsp;{{capital?.Proposer?.fName||""}}&nbsp;{{capital?.Proposer?.lName}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">2. Maiden Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{capital?.Proposer?.maidenName||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">3. Father's Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{capital?.Proposer?.fatherName||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">4. Mother's Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{capital?.Proposer?.motherName||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">5. Spouse Name:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{capital?.Proposer?.spouseName||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">6. Date Of Birth:</td>
+                            <td style="font-size:11px" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{eAppForm?.otherMemberDtl?.customer?.dtl?.dob||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px;" colspan="2">7. Country of Birth:</td>
+                            <td style="font-size:11px;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{Proposer?.nationality=='Indian'?'India':Proposer?.countryName1}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">8. Gender:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{capital?.Proposer?.gender||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">9. Marital Status:</td>
+                            <td style="font-size:11px;text-transform: capitalize; " colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{Proposer?.maritalStatus||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">10. US Person:</td>
+                            <td style="font-size:11px;text-transform: capitalize;">
+                                <span ng-if="ProposerExist">
+                            <strong colspan="2">{{eAppForm?.additionalDtls?.fatca?.isUsPersonProposer?'Yes':'No'}}</strong>
+
+                        </span>
+                                <span> (If Yes, please fill FATCA / CRS
+                            certification)</span>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">11. Nationality:</td>
+                            <td style="font-size:11px;text-transform: capitalize;">
+                                <span ng-if="ProposerExist">
+                            <strong colspan="2">{{Proposer?.nationality||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">12. Residential Status:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{Proposer?.countryName1||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">13. Relationship with Life to be Insured:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{Proposer?.relationshipwithLA||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">14. Are you tax resident of any country other than India?</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{eAppForm?.additionalDtls?.fatca?.otherCountryTaxResidentProposer==0?'No':'Yes'}}
+                            </strong>
+
+                        </span>
+                                <span> (If Yes, please fill FATCA / CRS certification)</span>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">15. Source of Income:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong></strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">16. Mobile (Mandatory):</td>
+                            <td style="font-size:11px" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{eAppForm?.otherMemberDtl?.customer?.dtl?.mobile||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;&nbsp;&nbsp; Alternate No.:</td>
+                            <td style="font-size:11px" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{eAppForm?.otherMemberDtl?.customer?.dtl?.landline||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">17. Email ID(Mandatory):</td>
+                            <td style="font-size:11px" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{eAppForm?.otherMemberDtl?.customer?.dtl?.email||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">18. PAN Number:</td>
+                            <td style="font-size:11px;text-transform: uppercase;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>
+                                {{capital?.Proposer?.pan||""}}
+                            </strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">19. Occupational Details:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{Proposer?.occupation||""}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;Name & Address of the Organization/Business:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{capital?.Proposer?.nameofOrg}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;Exact Nature of Duties:</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="ProposerExist">
+                            <strong>{{Proposer?.natureofDuties||''}}</strong>
+                        </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="2">&nbsp;Annual Gross Income(in Rs):</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <span ng-if="eAppForm.otherMemberDtl.otherDtl.profDtl.dtl.occupation!='ST'">
+                            <span ng-if="eAppForm.otherMemberDtl.otherDtl.profDtl.dtl.annInc">
+                                <strong>&#8377;</strong>
+                            </span>
+                                <strong>
+                                {{eAppForm?.otherMemberDtl?.otherDtl?.profDtl?.dtl?.annInc||''}}
+                            </strong>
+                                </span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    <!-- </tbody>
+</table> -->
+<p style="page-break-after:always"></p>
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #333;margin-top:10px" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td style="width: 100%;vertical-align: top;">
+                <table style=" border-collapse: collapse;" cellspacing="0" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:11px;">
+                                <span>
+                                    <strong>Section III: Address Details</strong></span> (is address of Life to be Insured different from Proposer)
+                                <span ng-if="!ProposerExist">&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <strong>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                                </span>
+                                <span ng-if="ProposerExist">
+                                    <strong>{{eAppForm?.otherMemberDtl?.customer?.address?.permanent.sameAsLA==1?'No':'Yes'}}</strong>
+                                </span>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;(If yes, please mention on a separate sheet and attach)</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="width: 100%; border-collapse: collapse; border: 1px solid #333;font-size:11px;margin-top:6px" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="width: 50%;vertical-align: top;border-right: 1px solid #333">
+                <table style="width: 100%; border-collapse: collapse;" cellpadding="1">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" rowspan="2" style="font-size:11px;border-bottom:1px solid #333;">
+                                <strong>Address for Communication with Proposer</strong>
+                            </td>
+                            <td colspan="2" rowspan="2" style="font-size:11px;border-bottom:1px solid #333;"><strong>Residence</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td style="width: 50%;vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="1">
+                    <tbody>
+                        <tr>
+                            <td colspan="2" style="font-size:11px;border-bottom:1px solid #333">
+                                <strong>Permanent Address of Proposer</strong>(if different from Communication Address)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr ng-if="!ProposerExist">
+            <td style="width: 50%;  border-right: 1px solid #333; vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Address: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.communicationAddr1||""}}&nbsp;{{capital?.LA?.communicationAddr2||""}}&nbsp;{{capital?.LA?.communicationAddr3||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">City: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.communication?.city}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">State: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.communication?.state}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Country: </td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>India</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Pincode: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.address?.communication?.pincode}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Landmark: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.address?.communication?.landmark||""}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td style="width: 50%;vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Address: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.LA?.permanentAddr1||""}}&nbsp;{{capital?.LA?.permanentAddr2||""}}&nbsp;{{capital?.LA?.permanentAddr3||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">City: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.permanentAddr?.city||""}}
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">State: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{LA?.permanentAddr?.state||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Country: </td>
+                            <td style="font-size:11pxage;text-transform: capitalize;" colspan="2">
+                                <strong>India</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Pincode: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.address?.permanent?.pincode||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Landmark: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.personalDtl?.customer?.address?.permanent?.landmark||""}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr ng-if="ProposerExist">
+            <td style="width: 50%;  border-right: 1px solid #333; vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Address: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.Proposer?.communicationAddr1||""}}&nbsp;{{capital?.Proposer?.communicationAddr2||""}}&nbsp;{{capital?.Proposer?.communicationAddr3||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">City: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{Proposer?.communication?.city}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">State: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{Proposer?.communication?.state}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Country: </td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>India</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Pincode: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.otherMemberDtl?.customer?.address?.communication?.pincode}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Landmark: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.otherMemberDtl?.customer?.address?.communication?.landmark}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td style="width: 50%;vertical-align: top;">
+                <table style="width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+                    <tbody>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Address: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{capital?.Proposer?.permanentAddr1||""}}&nbsp;{{capital?.Proposer?.permanentAddr2||""}}&nbsp;{{capital?.Proposer?.permanentAddr3||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">City: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{Proposer?.permanentAddr?.city||""}}
+                                </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">State: &nbsp;</td>
+                            <td style="font-size:11px;text-transform: capitalize;" colspan="2">
+                                <strong>{{Proposer?.permanentAddr?.state||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Country: </td>
+                            <td style="font-size:11pxage;text-transform: capitalize;" colspan="2">
+                                <strong>India</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Pincode: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.otherMemberDtl?.customer?.address?.permanent?.pincode||""}}</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:11px" colspan="4">Landmark: </td>
+                            <td style="font-size:11px;" colspan="2">
+                                <strong>{{eAppForm?.otherMemberDtl?.customer?.address?.permanent?.landmark||""}}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<table style="width: 100%; border-collapse: collaps;margin-top:6px" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;">
+                <strong>Section IV: Proposer/Policy Owner Electronic Insurance Account(eIA)
+                </strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="width:100%;border-collapse: collapse;font-size:11px;margin-top:0px" cellpadding="4" cellspacing="0">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;width:90%">
+                1. Do you have an eIA Account?
+                <!-- <span ng-if="!eAppForm.additionalDtls.ir.elecPolicy"><strong style="margin-left:30px"></strong></span> -->
+                <!-- <span ng-if="eAppForm.additionalDtls.ir.elecPolicy"><strong style="margin-left:30px">{{eAppForm.additionalDtls.ir.IrAcc?'Yes':'No'}}</strong></span> -->
+                <span><strong style="margin-left:30px">{{(eAppForm?.additionalDtls?.ir?.elecPolicy=='1'||eAppForm?.additionalDtls?.ir?.elecPolicy==1)?(eAppForm?.additionalDtls?.ir?.IrAcc?'Yes':'No'):''}}</strong></span>
+                <span style="margin-left:30px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; If yes, please quote eIA Number:
+                    <span ng-if="eAppForm.additionalDtls.ir.elecPolicy">
+                        <strong style="margin-left:30px">{{eAppForm?.additionalDtls?.ir?.irAccNum||""}}</strong>
+                    </span>
+                </span>
+            </td>
+            <td style="font-size:11px">
+                <span></span>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width:90%">
+                2. Do you wish to open Electronic Insurance Account &amp; convert your policies into electronic policies?
+            </td>
+            <td style="font-size:11px;text-align:right">
+                <span>
+                    <strong>{{(eAppForm?.additionalDtls?.ir?.elecPolicy=='1'||eAppForm?.additionalDtls?.ir?.elecPolicy==1)?'Yes':'No'}}</strong>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width:90%">
+                3. Select your preferred Insurance Repository to open Electronic Insurance Account
+            </td>
+            <td style="font-size:11px;text-align:right">
+                <span ng-if="eAppForm.additionalDtls.ir.elecPolicy && !eAppForm.additionalDtls.ir.IrAcc">
+                    <strong>{{LA?.irProvider}}
+                    </strong>
+                </span>
+                <span ng-if="eAppForm.additionalDtls.ir.elecPolicy && eAppForm.additionalDtls.ir.IrAcc">
+                    <strong>{{LA?.irName}}
+                    </strong>
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="width:100%; border-collapse:collapse; margin-top: 3px" cellspacing="0" cellpadding="2">
+    <tr>
+        <td colspan="6" style="font-size:11px;border-bottom: 1px solid black;">
+            <strong>Section V: Nominee Details*</strong> (To be filled only if Life Insured & Proposer are same)
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6" style="font-size: 11px">
+            <span ng-if="!ProposerExist"> 1<strong> Are there Multiple/Different Nominees?</strong>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span ng-if="eAppForm.additionalDtls.nominee.length>1"><strong>Yes</strong></span>
+            <span ng-if="eAppForm.additionalDtls.nominee.length==1"><strong>No</strong></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if='!ProposerExist'>(if yes, please fill Annexure for Multiple Nominations)</span>
+            <span ng-if="ProposerExist"> 1<strong> Are there Multiple/Different Nominees?</strong>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span ng-if="ProposerExist">(if yes, please fill Annexure for Multiple Nominations)</span>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:11px">
+            2 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="!ProposerExist">
+                    <strong>{{capital?.NomineeName[0]||""}}</strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:11px">
+            3 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="!ProposerExist">
+                    <strong>
+                        {{eAppForm?.additionalDtls?.nominee[0]?.dob||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            4 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="!ProposerExist">
+                    <strong>
+                        {{relativesGender?.Nominee[0]||''}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            5 Relationship With Insured:
+        </td>
+        <td style="font-size:11px">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="!ProposerExist">
+                    <strong>
+                        {{additionalDtls?.nomineeRelation[0]||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[1] && !ProposerExist">
+        <td style="font-size:11px">
+            6 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span>
+                <span>
+                    <strong>{{capital?.NomineeName[1]||""}}</strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[1] && !ProposerExist">
+        <td style="font-size:11px">
+            7 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{eAppForm?.additionalDtls?.nominee[1]?.dob||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            8 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{relativesGender?.Nominee[1]||''}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            9 Relationship With Insured:
+        </td>
+        <td style="font-size:11px">
+            <span>
+                <span>
+                    <strong>
+                        {{additionalDtls?.nomineeRelation[1]||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[2] && !ProposerExist">
+        <td style="font-size:11px">
+            10 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span>
+                <span>
+                    <strong>{{capital?.NomineeName[2]||""}}</strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[2] && !ProposerExist">
+        <td style="font-size:11px">
+            11 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{eAppForm?.additionalDtls?.nominee[2]?.dob||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            12 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{relativesGender?.Nominee[2]||''}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            13 Relationship With Insured:
+        </td>
+        <td style="font-size:11px">
+            <span>
+                <span>
+                    <strong>
+                        {{additionalDtls?.nomineeRelation[2]||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[3] && !ProposerExist">
+        <td style="font-size:11px">
+            14 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span>
+                <span>
+                    <strong>{{capital?.NomineeName[3]||""}}</strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[3] && !ProposerExist">
+        <td style="font-size:11px">
+            15 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{eAppForm?.additionalDtls?.nominee[3]?.dob||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            16 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{relativesGender?.Nominee[3]||''}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            17 Relationship With Insured:
+        </td>
+        <td style="font-size:11px">
+            <span>
+                <span>
+                    <strong>
+                        {{additionalDtls?.nomineeRelation[3]||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[4] && !ProposerExist">
+        <td style="font-size:11px">
+            18 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span>
+                <span>
+                    <strong>{{capital?.NomineeName[4]||""}}</strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[4] && !ProposerExist">
+        <td style="font-size:11px">
+            19 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{eAppForm?.additionalDtls?.nominee[4]?.dob||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            20 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span>
+                <span>
+                    <strong>
+                        {{relativesGender?.Nominee[4]||''}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            21 Relationship With Insured:
+        </td>
+        <td style="font-size:11px">
+            <span>
+                <span>
+                    <strong>
+                        {{additionalDtls?.nomineeRelation[4]||""}}
+                    </strong>
+                </span>
+            </span>
+        </td>
+    </tr>
+
+
+</table>
+<table style="width:100%; border-collapse: collapse;  margin-top: 5px" cellspacing="0" cellpadding="2">
+    <tr>
+        <td colspan="6" style="font-size:11px;border-bottom: 1px solid black;">
+            <strong>Section VI: Appointee Details*</strong> (If Nominee is less than 18 years, Appointee is mandatory, Appointee must be above 18 years of age)
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:11px">
+            1 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[0].appointeeDetails">
+                        <strong>{{capital?.AppointeeName[0]||""}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:11px">
+            2 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[0].appointeeDetails">
+                        <strong>{{eAppForm?.additionalDtls?.nominee[0]?.appointeeDetails?.dob||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            3 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="!ProposerExist">
+                    <strong>{{relativesGender?.Appointee[0]||''}}</strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            4 Relationship With Nominee:
+        </td>
+        <td style="font-size:11px">
+            <span ng-if="eAppForm.additionalDtls.nominee[0]">
+                <span ng-if="eAppForm.additionalDtls.nominee[0].appointeeDetails">
+                    <span ng-if="!ProposerExist">
+                        <strong>{{additionalDtls?.appointeeRelation[0]||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[1] && !ProposerExist && eAppForm.additionalDtls.nominee[1].appointeeDetails">
+        <td style="font-size:11px">
+            1 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span ng-if="eAppForm.additionalDtls.nominee[1]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[1].appointeeDetails">
+                        <strong>{{capital?.AppointeeName[1]||""}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[1] && !ProposerExist && eAppForm.additionalDtls.nominee[1].appointeeDetails">
+        <td style="font-size:11px">
+            2 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[1]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[1].appointeeDetails">
+                        <strong>{{eAppForm?.additionalDtls?.nominee[1]?.appointeeDetails?.dob||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            3 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[1]">
+                <span ng-if="!ProposerExist">
+                    <strong>{{relativesGender?.Appointee[1]||''}}</strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            4 Relationship With Nominee:
+        </td>
+        <td style="font-size:11px">
+            <span ng-if="eAppForm.additionalDtls.nominee[1]">
+                <span ng-if="eAppForm.additionalDtls.nominee[1].appointeeDetails">
+                    <span ng-if="!ProposerExist">
+                        <strong>{{additionalDtls?.appointeeRelation[1]||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[2] && !ProposerExist && eAppForm.additionalDtls.nominee[2].appointeeDetails">
+        <td style="font-size:11px">
+            1 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span ng-if="eAppForm.additionalDtls.nominee[2]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[2].appointeeDetails">
+                        <strong>{{capital?.AppointeeName[2]||""}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[2] && !ProposerExist && eAppForm.additionalDtls.nominee[2].appointeeDetails">
+        <td style="font-size:11px">
+            2 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[2]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[2].appointeeDetails">
+                        <strong>{{eAppForm?.additionalDtls?.nominee[2]?.appointeeDetails?.dob||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            3 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[2]">
+                <span ng-if="!ProposerExist">
+                    <strong>{{relativesGender?.Appointee[2]||''}}</strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            4 Relationship With Nominee:
+        </td>
+        <td style="font-size:11px">
+            <span ng-if="eAppForm.additionalDtls.nominee[2]">
+                <span ng-if="eAppForm.additionalDtls.nominee[2].appointeeDetails">
+                    <span ng-if="!ProposerExist">
+                        <strong>{{additionalDtls?.appointeeRelation[2]||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[3] && !ProposerExist && eAppForm.additionalDtls.nominee[3].appointeeDetails">
+        <td style="font-size:11px">
+            1 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span ng-if="eAppForm.additionalDtls.nominee[3]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[3].appointeeDetails">
+                        <strong>{{capital?.AppointeeName[3]||""}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[3] && !ProposerExist && eAppForm.additionalDtls.nominee[3].appointeeDetails">
+        <td style="font-size:11px">
+            2 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[3]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[3].appointeeDetails">
+                        <strong>{{eAppForm?.additionalDtls?.nominee[3]?.appointeeDetails?.dob||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            3 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[3]">
+                <span ng-if="!ProposerExist">
+                    <strong>{{relativesGender?.Appointee[3]||''}}</strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            4 Relationship With Nominee:
+        </td>
+        <td style="font-size:11px">
+            <span ng-if="eAppForm.additionalDtls.nominee[3]">
+                <span ng-if="eAppForm.additionalDtls.nominee[3].appointeeDetails">
+                    <span ng-if="!ProposerExist">
+                        <strong>{{additionalDtls?.appointeeRelation[3]||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[4] && !ProposerExist && eAppForm.additionalDtls.nominee[4].appointeeDetails">
+        <td style="font-size:11px">
+            1 Name:
+        </td>
+        <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+            <span ng-if="eAppForm.additionalDtls.nominee[4]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[4].appointeeDetails">
+                        <strong>{{capital?.AppointeeName[4]||""}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+    <tr ng-if="eAppForm.additionalDtls.nominee[4] && !ProposerExist && eAppForm.additionalDtls.nominee[4].appointeeDetails">
+        <td style="font-size:11px">
+            2 Date of Birth:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[4]">
+                <span ng-if="!ProposerExist">
+                    <span ng-if="eAppForm.additionalDtls.nominee[4].appointeeDetails">
+                        <strong>{{eAppForm?.additionalDtls?.nominee[4]?.appointeeDetails?.dob||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            3 Gender:
+        </td>
+        <td style="font-size:11px;">
+            <span ng-if="eAppForm.additionalDtls.nominee[4]">
+                <span ng-if="!ProposerExist">
+                    <strong>{{relativesGender?.Appointee[4]||''}}</strong>
+                </span>
+            </span>
+        </td>
+        <td style="font-size:11px">
+            4 Relationship With Nominee:
+        </td>
+        <td style="font-size:11px">
+            <span ng-if="eAppForm.additionalDtls.nominee[4]">
+                <span ng-if="eAppForm.additionalDtls.nominee[4].appointeeDetails">
+                    <span ng-if="!ProposerExist">
+                        <strong>{{additionalDtls?.appointeeRelation[4]||''}}</strong>
+                    </span>
+            </span>
+            </span>
+        </td>
+    </tr>
+</table>
+<p style="border-bottom:1px solid #333; font-size:11px;">
+    <strong>Section VII: Mandatory Details of the proposer as per AML guidelines</strong>
+</p>
+<div style="height:2px"></div>
+<table style="width: 100%; border-collapse: collapse; margin-top:0px;font-size:11px;border:1px solid black" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;">
+                <span>1. Identity Proof:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.idProof || ''}}</strong>
+                </span>
+            </td>
+            <td style="font-size:11px">
+                <span> ID No:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.idenNoOfId || ''}}</strong>
+                </span>
+            </td>
+            <td style="font-size:11px">
+                <span>Expiry Date:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.expiryDate}}</strong>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;">
+                <span>2. Address Proof:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.addressProof || ''}}</strong>
+                </span>
+            </td>
+            <td style="font-size:11px">
+                <span> ID No:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.idenNoOfAddress || ''}}</strong>
+                </span>
+            </td>
+            <td style="font-size:11px">
+                <span>Expiry Date:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.expiryDateOfAddress}}</strong>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;">
+                <span>3. Income Proof:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.incomeProof}}</strong>
+                </span>
+            </td>
+            <td style="font-size:11px">
+                <span> ID No:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.idenNoOfIdOfIncome}}</strong>
+                </span>
+            </td>
+            <td style="font-size:11px">
+                <span>Expiry Date:</span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    <strong>{{LA?.expiryDateOfIdOfIncome}}</strong>
+                </span>
+            </td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+<table style="width: 100%; border-collapse: collapse; ;margin-top:-10px" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style=" font-size:11px;width:54%;">
+                <strong>Section VIII: Lifestyle Questions &amp; Personal Details of the Proposed Insured</strong> (not to be filled for Annuity Product)
+            </td>
+
+            <td style="font-size:11px;text-align: right ">
+
+                <strong>Yes/No</strong>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table style="width:50%;border-collapse: collapse;font-size:11px;margin-top:1px" cellpadding="2" cellspacing="0">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;">
+                <span>
+                    1. Height in cms
+                </span>
+            </td>
+            <td style="font-size:11px;">
+                <span><strong>{{eAppForm?.lifeStyleDtl?.lifestyle?.height}}</strong></span>
+            </td>
+            <td style="font-size:11px">
+                <span>
+                    2. Weight in kgs:
+                </span>
+            </td>
+            <td style="font-size:11px; margin-right:15px">
+                <span ng-if="userSelectedproductGuid!='140N074V01'"><strong>{{eAppForm?.lifeStyleDtl?.lifestyle?.weight||""}}</strong></span>
+                <span ng-if="userSelectedproductGuid=='140N074V01'"><strong></strong></span>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<table style="width: 100%;margin-top:-10px" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;">
+                <strong>3. Do you consume or have consumed any of the following.</strong>
+            </td>
+
+        </tr>
+    </tbody>
+</table>
+
+
+<table style="border:none">
+    <tr>
+        <td style="width:86%">
+            <table style="border-collapse: collapse; font-size:11px; margin-top:2px" border="1" cellpadding="4">
+                <tbody>
+                    <tr>
+                        <td>
+                            Substance Consumed
+                        </td>
+                        <td>
+                            Consumed as
+                        </td>
+                        <td>
+                            Quantity
+                        </td>
+                        <td>
+                            No. of years
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tobacco Products(per day in Nos.)
+                        </td>
+                        <td><strong>{{tobaccoText||' '}}</strong></td>
+                        <td><strong>{{tobaccoDayQuantity||' '}}</strong></td>
+                        <td><strong>{{tobaccoNoOfYears||' '}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Alcohol(per week in ml)
+                        </td>
+                        <td><strong>{{alcoholText||' '}}</strong></td>
+                        <td><strong>{{alcoholWeekQuantity||' '}}</strong></td>
+                        <td><strong>{{alcoholNoOfYears||' '}}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Narcotics
+                        </td>
+                        <td><strong>{{eAppForm?.lifeStyleDtl?.lifestyle?.NarcoticsDetails||""}}</strong></td>
+                        <td><strong>{{eAppForm?.lifeStyleDtl?.lifestyle?.NarcoticsQuantity||""}}</strong></td>
+                        <td><strong>{{eAppForm?.lifeStyleDtl?.lifestyle?.NarcoticsNoOfYears||""}}</strong></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </td>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <td style="padding:4px">
+            <table style="border:none;margin-top:4px;margin-left: 60px;font-size:11px" cellspacing="4" cellpadding="4" ng-if="userSelectedproductGuid!='140N074V01'">
+                <tbody>
+                    <tr>
+                        <td style="margin-top:6px;padding:4px">
+                            <strong>&nbsp;&nbsp;&nbsp;</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-top:6px;padding:4px">
+                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{eAppForm?.lifeStyleDtl?.lifestyle?.tobacco?"Yes":"No"}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-top:6px;padding:4px">
+                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{eAppForm?.lifeStyleDtl?.lifestyle?.alcohol?"Yes":"No"}}</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-top:6px">
+                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{eAppForm?.lifeStyleDtl?.lifestyle?.narcotics?"Yes":"No"}}</strong>
+                        </td>
+                    </tr>
+            </table>
+            <table style="border:none;margin-top:4px;margin-left: 60px;font-size:11px" cellspacing="4" cellpadding="4" ng-if="userSelectedproductGuid=='140N074V01'">
+                <tbody>
+                    <tr>
+                        <td style="margin-top:6px;padding:4px">
+                            <strong>&nbsp;&nbsp;&nbsp;</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-top:6px;padding:4px">
+                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-top:6px;padding:4px">
+                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="margin-top:6px">
+                            <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
+                        </td>
+                    </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+<table cellspacing="0" cellpadding="4" style="margin-top: 5px">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;width: 93% ">
+                <strong>4. Is your occupation associated with any specific hazard or do you take part in activities or
+                    hobbies that
+                    could be dangerous in any way?</strong>
+            </td>
+            <td style="font-size:11px;" ng-if="userSelectedproductGuid!='140N074V01'"><strong>{{eAppForm?.disclaimer?.occupation==0?'Yes':'No'}}</strong></td>
+            <td style="font-size:11px;" ng-if="userSelectedproductGuid=='140N074V01'"><strong></strong></td>
+        </tr>
+        <td style="font-size:11px; width:89%"> (e.g. Occupation: chemical factory, mines, explosives, radiation, corrosive chemicals etc & hobbies: aviation other than fare paying passenger, mountaineering, deep sea diving or any form of racing) if yes, please complete the relevant Occupation/Avocation
+            Questionnaire
+        </td>
+        <td></td>
+        <tr>
+            <td style="font-size: 11px"><strong>{{eAppForm?.disclaimer?.occuDtl}}</strong></td>
+        </tr>
+    </tbody>
+</table>
+<table cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;width: 94%">
+                <strong>5. Are you employed in the Armed, Para-Military or Police Forces?
+                </strong>If Yes please provide below details and complete the armed forces questionnaire
+            </td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid!='140N074V01'"><strong>{{eAppForm?.disclaimer?.armyEmployed==0?'Yes':'No'}}</strong></td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid=='140N074V01'"><strong></strong></td>
+        </tr>
+    </tbody>
+</table>
+
+<table cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;" colspan="5">
+                <span>Category after last Medical Examination:</span>
+                <span ng-if="eAppForm.disclaimer.armyEmployed">______________________________</span>
+                <span ng-if="!eAppForm.disclaimer.armyEmployed" style="text-transform: capitalize;">
+                    <strong>{{eAppForm?.disclaimer?.lastExamCateg||""}}</strong>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;">Rank:</td>
+            <td style="font-size:11px">
+                <span ng-if="eAppForm.disclaimer.armyEmployed">_________________ </span>
+                <span ng-if="!eAppForm.disclaimer.armyEmployed">
+                    <strong>{{eAppForm?.disclaimer?.rank||""}}</strong>
+                </span>
+            </td>
+
+            <td style="font-size:11px;">Dept/Div:</td>
+            <td style="font-size:11px;">
+                <span ng-if="eAppForm.disclaimer.armyEmployed"> ___________________ </span>
+                <span ng-if="!eAppForm.disclaimer.armyEmployed" style="text-transform: capitalize;font-size:12px">
+                    <strong> {{eAppForm?.disclaimer?.dept}}</strong>
+                </span>
+            </td>
+            <td style="font-size:11px;">Date of Last Medical Examination:</td>
+            <td style="font-size:11px;">
+                <span ng-if="eAppForm.disclaimer.armyEmployed">_____________________</span>
+                <span ng-if="!eAppForm.disclaimer.armyEmployed" style="text-transform: capitalize;">
+                    <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{eAppForm?.disclaimer?.lastExamDate||""}}</strong>
+                </span>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+<table cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;width:93%">
+                <strong> 6. Have you ever been convicted of a criminal offence or do you have any criminal case or
+                    charge pending
+                    against you in India or abroad?
+                </strong>(If Yes, please provide copy of FIR)
+            </td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid!='140N074V01'"><strong>{{eAppForm?.disclaimer?.historyOfConviction==0?'Yes':'No'}}</strong></td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid=='140N074V01'"><strong></strong></td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width:93%">
+                <strong> 7.Are you currently or do you intend to travel outside of India for more than 6 months?
+                </strong>(If Yes, please complete the Travel Questionnaire)
+            </td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid!='140N074V01'"><span><strong>{{eAppForm?.disclaimer?.intendToTravel==0?'Yes':'No'}}</strong></span></td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid=='140N074V01'"><span><strong></strong></span></td>
+        </tr>
+
+        <tr>
+            <td style="font-size:11px;width:89%">
+                <strong> 8.Are you (Proposed Holder/Proposed Insured/Premium Payor) or your family member(s)/close
+                    associate(s) a
+                    Politically Exposed Person (PEP)^.
+
+                </strong> (If Yes, please fill PEP Questionnaire )
+            </td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid!='140N074V01'"><span><strong>{{eAppForm?.disclaimer?.politicallyExposed==0?'Yes':'No'}}</strong></span></td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid=='140N074V01'"><span><strong></strong></span></td>
+        </tr>
+    </tbody>
+</table>
+<table style="margin-top:0px; width:90%" cellspacing="0" cellpadding="4">
+    <tbody style="text-align: justify;text-justify: inter-word;-moz-text-align-last: justify;">
+        <tr>
+            <td style="font-size: 11px;width:90%">
+                * If nominee/appointee address is different from Proposer, please provide in separate sheet and attach
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 11px; width:95%;">^ Politically Exposed Person(PEP) are individuals who are or have been entrusted with prominent public functions, for example Heads/ Ministers of Central/ State Government, Senior Politicians, Senior Government/ Judicial/ Military Officers,
+                Senior Executive of state owned corporations, important Political Party Officials and immediate family members of above persons(Spouse, Children, Parents, Siblings, In-laws)</td>
+        </tr>
+    </tbody>
+</table>
+<table cellspacing="0" cellpadding="4" style="margin-top:3px">
+    <tbody>
+        <tr>
+            <td>
+                <strong style="font-size:11px;border-bottom:1px solid #333">Section IX: Medical Details</strong><span style="font-size:11px;border-bottom:1px solid #333"> (not to be filled for Annuity Product)</span>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="font-size:11px">1 Are any of your Parents or Siblings suffering or have suffered from
+                    Heart Disease, Diabetes, Stroke, Hypertension,
+                    Raised Cholesterol, Cancer, Multiple Sclerosis, Alzheimer, Parkinson or any hereditary disease
+                    before
+                    the age of 55?
+                </strong>(If yes, please provide details in the below section)</td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid!='140N074V01'"><span><strong>{{eAppForm?.personalDtl?.toggleFields?.familyBtn?'Yes':'No'}}</strong></span></td>
+            <td style="font-size:11px" ng-if="userSelectedproductGuid=='140N074V01'"><span><strong></strong></span></td>
+        </tr>
+        <tr>
+        </tr>
+    </tbody>
+
+</table>
+
+<table style="width: 100%;font-size:11px; margin-top: -14px" cellspacing="0" cellpadding="3">
+    <tbody>
+        <tr>
+            <td style="vertical-align: top">
+                <table border="1" style="width: 100%;font-size:11px; margin-top:0px; border-collapse: collapse;border: 1px solid #333;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Relationship with Insured
+                            </td>
+                            <td>
+                                Age
+                            </td>
+                            <td>
+                                Current Status
+                            </td>
+                            <td>
+                                Details of present health & full particulars of any major illness
+                            </td>
+                            <td>
+                                Age at Onset
+                            </td>
+                            <td>
+                                Cause of Death
+                            </td>
+                        </tr>
+                        <tr ng-repeat="data in eAppForm.personalDtl.familyDtl">
+                            <td style="font-size:11px">
+                                <span><strong>{{data?.healthStatus!='Healthy' ? LA?.familyRelation[$index]:' '}}</strong></span>
+                            </td>
+                            <td style="font-size:11px">
+                                <span>{{data?.ageAtDeath||' '}}</span>
+                            </td>
+                            <td style="font-size:11px">
+                                <span><strong>{{data?.healthStatus!='Healthy' ? data?.healthStatus:' '}}</strong></span>
+                            </td>
+                            <td style="font-size:11px">
+                                <span ng-if="data.age"><strong>{{data?.cause||' '}}</strong></span>
+                            </td>
+                            <td style="font-size:11px">
+                                <span><strong>{{data?.age||''}}</strong></span>
+                            </td>
+                            <td style="font-size:11px">
+                                <span ng-if="data.ageAtDeath"><strong>{{LA?.causeOfDeath[$index]||' '}}</strong></span>
+                            </td>
+                        </tr>
+                        <tr ng-if="unifiedLengthofFamilyMembers<5">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-if="unifiedLengthofFamilyMembers<4">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-if="unifiedLengthofFamilyMembers<3">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-if="unifiedLengthofFamilyMembers<2">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr ng-if="unifiedLengthofFamilyMembers<1">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="margin-top:0px" cellspacing="0" cellpadding="4" ng-if="userSelectedproductGuid != '140N074V01'">
+    <tbody style="text-align: justify;text-justify: inter-word;-moz-text-align-last: justify;">
+        <tr>
+            <td style="font-size:11px; width: 93%">
+                <strong style="font-size:11px;">2 Have you ever had symptoms of, been treated for, been advised to
+                    receive treatment or have undergone any
+                    investigations for any of the below?
+                </strong>
+            </td><td>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; width: 93%">The following conditions are provided as an example only. You are requested to disclose all disorders, disease or other health conditions, which are, or might be relevant. If answer for any of the questions in this section is “yes”, please
+                provide all medical reports, if available
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(a) High Blood Pressure, Chest Pain, Angina, shortness of Breath,
+                    Palpitation, Rheumatic Fever, Heart Murmur,
+                    Heart Attack or any other symptoms or disorder pertaining to the heart or Circulatory System?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q079')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(b) Epilepsy, Depression, Mental ailment, Stroke, Paralysis, Multiple
+                    Sclerosis or any other Nervous breakdown?
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q080')?.answer?"Yes":"No"}}</strong>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; width: 93%">
+                <strong style="margin-left:5px">(c) Tuberculosis, Asthma, Bronchitis, Avian Flu, difficulty in regular
+                    breathing or any other Respiratory
+                    Disorder?
+
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q081')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(d) Cancer, Tumour, Cyst, Leukemia, Growth, Lump or other Malignancy?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q082')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(e) Stomach, Gastrointestinal disorder, Kidney, Liver, Bladder
+                    Disorder, Reproductive, Urinary Disorder,
+                    Hepatitis, Cirrhosis?
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q083')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(f) High Blood Sugar, Diabetes, Thyroid or any other Gland Related
+                    Disorders?
+
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q084')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(g) Any Disorder related to Ear, Eye, Nose, Throat or Skin?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q085')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(h) Any Back, Arthritis, Limbs, Spine, Joint or Bone Disorders or any
+                    other physical deformity/defect?
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q086')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; margin-left: 10px;width: 93%">
+                <strong style="margin-left:5px">(i) Do you have Anaemia or any other blood related disorders?
+
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q087')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; margin-left: 10px;width: 93%">
+                <strong style="margin-left:5px">(j) Have you or your spouse ever received any medical advice,
+                    counselling or treatment in connection with
+                    HIV/AIDS or Hepatitis B/C or any Sexually Transmitted Disease?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q088')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="width: 93%; font-size: 11px">
+                <strong>(k) Are you currently suffering from any illness, impairment or taking any
+                    medication/pills/drugs ?
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong>{{wealthMaxHealthMapper('Q089')?.answer ? "Yes" : 'No'}}</strong></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(l) Has there been weight loss or weight gain (> =5 Kgs) in the past
+                    year?
+
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong>{{wealthMaxHealthMapper('Q090')?.answer?"Yes":'No'}}</strong></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(m) Have you undergone or been advised to undergo surgery of any kind
+                    or any major organ transplant?
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong>{{wealthMaxHealthMapper('Q091')?.answer?"Yes":'No'}}</strong></td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+
+                <strong>(n) During the past five years
+                </strong>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>
+                    (i) Have you ever sustained an illness lasting for more than 5 days except for fever, common cold
+                    or cough?
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong>{{wealthMaxHealthMapper('Q092')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong style="margin-left:15px">
+                    (ii) Have you undergone or advised to undergo or awaiting any medical investigations like ECG,
+                    X-Ray, CT Scan, MRI, Echo
+                    or blood &nbsp;&nbsp;&nbsp;&nbsp; tests (other than for routine health check/employment medicals/
+                    insurance
+                    medicals) or been admitted to a hospital for treatment or
+                    investigations?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px;"><strong>{{wealthMaxHealthMapper('Q093')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+
+                <strong style="margin-left:15px">
+                    (iii) Have you been abstained from work for more than a week?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong>{{wealthMaxHealthMapper('Q094')?.answer?"Yes":'No'}}</strong></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<table style="margin-top:0px" cellspacing="0" cellpadding="4" ng-if="userSelectedproductGuid == '140N074V01'">
+    <tbody style="text-align: justify;text-justify: inter-word;-moz-text-align-last: justify;">
+        <tr>
+            <td style="font-size:11px; width: 93%">
+                <strong style="font-size:11px;">2 Have you ever had symptoms of, been treated for, been advised to
+                    receive treatment or have undergone any
+                    investigations for any of the below?
+                </strong>
+            </td>
+            <!-- </td> -->
+        </tr>
+        <tr>
+            <td style="font-size:11px; width: 93%">The following conditions are provided as an example only. You are requested to disclose all disorders, disease or other health conditions, which are, or might be relevant. If answer for any of the questions in this section is “yes”, please
+                provide all medical reports, if available
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(a) High Blood Pressure, Chest Pain, Angina, shortness of Breath,
+                    Palpitation, Rheumatic Fever, Heart Murmur,
+                    Heart Attack or any other symptoms or disorder pertaining to the heart or Circulatory System?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(b) Epilepsy, Depression, Mental ailment, Stroke, Paralysis, Multiple
+                    Sclerosis or any other Nervous breakdown?
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; width: 93%">
+                <strong style="margin-left:5px">(c) Tuberculosis, Asthma, Bronchitis, Avian Flu, difficulty in regular
+                    breathing or any other Respiratory
+                    Disorder?
+
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(d) Cancer, Tumour, Cyst, Leukemia, Growth, Lump or other Malignancy?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(e) Stomach, Gastrointestinal disorder, Kidney, Liver, Bladder
+                    Disorder, Reproductive, Urinary Disorder,
+                    Hepatitis, Cirrhosis?
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(f) High Blood Sugar, Diabetes, Thyroid or any other Gland Related
+                    Disorders?
+
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(g) Any Disorder related to Ear, Eye, Nose, Throat or Skin?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(h) Any Back, Arthritis, Limbs, Spine, Joint or Bone Disorders or any
+                    other physical deformity/defect?
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; margin-left: 10px;width: 93%">
+                <strong style="margin-left:5px">(i) Do you have Anaemia or any other blood related disorders?
+
+
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; margin-left: 10px;width: 93%">
+                <strong style="margin-left:5px">(j) Have you or your spouse ever received any medical advice,
+                    counselling or treatment in connection with
+                    HIV/AIDS or Hepatitis B/C or any Sexually Transmitted Disease?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="width: 93%; font-size: 11px">
+                <strong>(k) Are you currently suffering from any illness, impairment or taking any
+                    medication/pills/drugs ?
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong></strong></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(l) Has there been weight loss or weight gain (> =5 Kgs) in the past
+                    year?
+
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong></strong></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                <strong style="margin-left:5px">(m) Have you undergone or been advised to undergo surgery of any kind
+                    or any major organ transplant?
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong></strong></td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+
+                <strong>(n) During the past five years
+                </strong>
+            </td>
+
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>
+                    (i) Have you ever sustained an illness lasting for more than 5 days except for fever, common cold
+                    or cough?
+                </strong>
+            </td>
+            <td style=" font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong style="margin-left:15px">
+                    (ii) Have you undergone or advised to undergo or awaiting any medical investigations like ECG,
+                    X-Ray, CT Scan, MRI, Echo
+                    or blood &nbsp;&nbsp;&nbsp;&nbsp; tests (other than for routine health check/employment medicals/
+                    insurance
+                    medicals) or been admitted to a hospital for treatment or
+                    investigations?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px;"><strong></strong></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 93%">
+
+                <strong style="margin-left:15px">
+                    (iii) Have you been abstained from work for more than a week?
+                </strong>
+            </td>
+            <td style="margin-left:15px; font-size: 11px"><strong></strong></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="width:100%; font-size:11px">
+    <tbody>
+        <tr>
+            <td style="width:94%">
+                <strong>3. To be answered by Female applicants only
+                </strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:94%">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>(a) Are you currently pregnant?
+                </strong> If Yes, duration of weeks<span ng-if="!wealthMaxFemaleMapper('Q056').answer">
+                    __________________________</span><span ng-if="wealthMaxFemaleMapper('Q056').answer"><strong>&nbsp;{{wealthMaxFemaleMapper('Q070')?.extraDetail}}</strong></span>
+            </td>
+            <td ng-if="eAppForm.personalDtl.customer.dtl.gender=='female' && userSelectedproductGuid!='140N074V01'" style="float:right;text-align:right">
+                <span>
+                    <strong ng-if="userSelectedproductGuid=='140N074V01'"></strong>
+                    <strong ng-if="userSelectedproductGuid!='140N074V01'">{{wealthMaxFemaleMapper('Q056')?.answer?"Yes":"No"}}</strong>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:94%">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>(b) Have you undergone an abortion / caesarian section, or had a miscarriage?
+                </strong>
+            </td>
+            <td style="float:right;text-align:right">
+                <span ng-if="eAppForm.personalDtl.customer.dtl.gender=='female'">
+                    <strong ng-if="userSelectedproductGuid=='140N074V01'"></strong>
+                    <strong ng-if="userSelectedproductGuid!='140N074V01'">{{wealthMaxFemaleMapper('Q095')?.answer?"Yes":"No"}}</strong>
+                </span>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="width:94%">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If Yes, mention period elapsed since the last occasion <span ng-if="wealthMaxFemaleMapper('Q095').answer">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong ng-if="userSelectedproductGuid=='140N074V01'"></strong>
+                    <strong ng-if="userSelectedproductGuid!='140N074V01'">{{wealthMaxFemaleMapper('Q095A')?.extraDetail}}</strong>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:94%">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <strong>(c) Have you suffered from or do you have any Gynaecological problems or Illness related to
+                    uterus/ovaries
+                    or breasts?
+
+                </strong>
+            </td>
+            
+            <td ng-if="eAppForm.personalDtl.customer.dtl.gender=='female'" style="float:right;text-align:right">
+                <strong ng-if="userSelectedproductGuid=='140N074V01'"></strong>   
+                <strong ng-if="userSelectedproductGuid!='140N074V01'">{{wealthMaxFemaleMapper('Q145')?.answer?"Yes":"No"}}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If answer to any of the questions 2(a-n) & 3(a-c) is Yes, Please give the following details
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table style="font-size:11px;width:100%;border-collapse: collapse;border: solid 1px #333" border="1" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td>
+                Details of the Treating / Family Doctor
+            </td>
+            <td>
+                Nature of ailment / disease etc.
+            </td>
+            <td>
+                Date of diagnosis
+            </td>
+            <td>
+                Fully recovered or still undergoing treatment
+            </td>
+        </tr>
+        <tr ng-repeat="data in treatingDoctorWealth" ng-if="treatingDoctorWealth.length>0">
+            <td>Name:&nbsp;&nbsp;<span style="text-transform:capitalize;"><strong>{{data?.name||""}}</strong></span>
+                <br />Address:&nbsp;&nbsp;<span><strong>{{data?.address||""}}</strong></span></td>
+            <td><span><strong>{{data?.natureOfDisease||""}}</strong></span></td>
+            <td><span><strong>{{data?.dateOfDiagnosis||""}}</strong></span></td>
+            <td><span><strong>{{data?.recoveryStatus}}</strong></span></td>
+        </tr>
+        <tr ng-if="FemaleWealthFlatArr[4].extraDetail!=''">
+            <td>Name:&nbsp;&nbsp;<span style="text-transform:capitalize;"><strong>{{FemaleWealthFlatArr?.extraDetail||""}}</strong></span>
+                <br />Address:&nbsp;&nbsp;<span><strong>{{FemaleWealthFlatArr?.extraDetail||""}}</strong></span></td>
+            <td><span><strong>{{FemaleWealthFlatArr?.extraDetail||""}}</strong></span></td>
+            <td><span><strong>{{FemaleWealthFlatArr?.extraDetail||""}}</strong></span></td>
+            <td><span><strong>{{FemaleWealthFlatArr?.extraDetail||""}}</strong></span></td>
+        </tr>
+        <tr ng-if="FemaleWealthFlatArr[4].extraDetail=='' && treatingDoctorWealth.length<1">
+            <td>Name:&nbsp;&nbsp;<span style="text-transform:capitalize;"><strong>&nbsp;&nbsp;</strong></span>
+                <br />Address&nbsp;&nbsp;<span><strong>&nbsp;&nbsp;</strong></span></td>
+            <td><span><strong>&nbsp;&nbsp;</strong></span></td>
+            <td><span><strong>&nbsp;&nbsp;</strong></span></td>
+            <td><span><strong>&nbsp;&nbsp;</strong></span></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+<table style="margin-top:-5px;width:100%" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="font-size:11px; width:95%;">
+                <strong>Section X: Previous Policy Details
+                </strong> (not to be filled for Annuity Product)
+            </td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 95%">
+                <strong style="margin-left: 15px; ">1. Is there any concurrent application and/or any existing
+                    insurance on your Life/Health/Accident/Critical
+                    Illness/Mediclaim/or other riders in effect with PLIL or any other insurer in India or abroad?
+                </strong>(If Yes,give details)</td>
+            <td style="font-size:11px;"><span ng-if="userSelectedproductGuid!='140N074V01' && eAppForm.personalDtl.otherPolicy[0].basePlanDec"><strong>Yes</strong></span></td>
+            <td style="font-size:11px;"><span ng-if="userSelectedproductGuid!='140N074V01' && !eAppForm.personalDtl.otherPolicy[0].basePlanDec"><strong>&nbsp;No</strong></span></td>
+            <td style="font-size:11px;"><span ng-if="userSelectedproductGuid=='140N074V01'"><strong></strong></span></td>
+
+        </tr>
+    </tbody>
+</table>
+<table style="width:100%;margin-top:6px; border-collapse: collapse;font-size:11px; float:left; margin-top: 0px" cellspacing="0" cellpadding="4" border="1">
+    <tbody>
+        <tr>
+            <td>Policy / Proposal No.
+            </td>
+            <td>Company Name
+
+            </td>
+            <td>Sum Assured
+
+            </td>
+            <td>Decision(Std/With Extra/Postponed/Declined/Not completed)
+            </td>
+            <td> Status(Inforced/Lapsed/Applied)
+
+            </td>
+        </tr>
+        <tr ng-repeat="otherPolicy in eAppForm.personalDtl.otherPolicy">
+
+            <td></td>
+            <td><strong>{{additionalDtls?.issueCompany[$index]||""}}</strong></td>
+            <td><strong>{{otherPolicy?.basicSA||""}}</strong></td>
+            <td><strong>{{additionalDtls?.basePlanDec[$index]||""}}</strong></td>
+            <td></td>
+
+        </tr>
+        <tr ng-if="eAppForm.personalDtl.otherPolicy.length==0">
+
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+
+        </tr>
+    </tbody>
+</table>
+
+<table style="margin-left:14px" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td>
+                <strong style="font-size: 11px;"> 2 In case Life Insured is a student / housewife, please provide
+                    insurance details regarding parents / husband
+                    / siblings
+                </strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table style="border: 1px solid #333; width: 100%" cellspacing="0" cellpadding="4" border="1">
+    <tbody>
+        <tr>
+            <td style="font-size: 11px" ng-if="userSelectedproductGuid!='140N074V01'"><strong>{{wealthMaxData?.wealthPolicyExtra?.prevPolSA || '0'}}</strong></td>
+            <td style="font-size: 11px" ng-if="userSelectedproductGuid=='140N074V01'"><strong>&nbsp;</strong></td>
+        </tr>
+    </tbody>
+</table>
+
+<table style=" margin-top:3px; width: 100%; border-collapse: collapse;" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="font-size:11px"><strong>Section XI: Details of Product Applied for</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;">
+                1. Product & Rider Details
+
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; width:30%;">
+                <strong ng-if="userSelectedproductGuid=='140N074V01'">Payment Options: &nbsp;&nbsp;&nbsp;Single Pay
+                </strong>
+                <strong ng-if="userSelectedproductGuid!='140N074V01'">Payment Options: &nbsp;&nbsp;&nbsp;
+                    {{eAppHardCopy?.productInfo?.UserPremiumPaymentTerm==1?"Single
+                    Pay":(eAppHardCopy?.productInfo?.UserPremiumPaymentTerm==eAppHardCopy?.productInfo?.UserPolicyTerm?"Regular
+                    Pay":"Limited Pay")}}
+                </strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="margin-left:50px; width: 30%"><strong>Mode of Payment
+                        (Not Applicable
+                        for Single Pay
+                        Plan):</strong></span> &nbsp;&nbsp;&nbsp;
+
+                <span ng-if="(eAppHardCopy.productInfo.UserPaymentMode=='Annual') && (userSelectedproductGuid!='140N074V01')"><strong>Annually</strong></span>
+                <span ng-if="(eAppHardCopy.productInfo.UserPaymentMode=='Semi-Annual') && (userSelectedproductGuid!='140N074V01')"><strong>Semi Annually</strong></span>
+                <span ng-if="(eAppHardCopy.productInfo.UserPaymentMode!='Annual') && (eAppHardCopy.productInfo.UserPaymentMode!='Semi-Annual') && (userSelectedproductGuid!='140N074V01')"><strong>{{eAppHardCopy?.productInfo?.UserPaymentMode||""}}</strong></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<table style="border: 1px solid #333; width: 100%; border-collapse: collapse;font-size:11px" cellspacing="0" cellpadding="4" border="1">
+    <tbody>
+        <tr>
+            <td>Product Name / Rider Name</td>
+            <td>Policy Term</td>
+            <td>Premium Payment Term</td>
+            <td>Sum Assured/Annuity Amount</td>
+            <td>Premium/Purchase Price</td>
+            <td>Option</td>
+            <td>Payout Option</td>
+            <td>Additional Benefit</td>
+        </tr>
+        <tr>
+            <td><strong>{{eAppHardCopy?.productInfo?.Userproduct?.Name||""}}</strong></td>
+            <td>
+                <strong ng-if="userSelectedproductGuid=='140N074V01'"></strong>
+                <strong ng-if="userSelectedproductGuid!='140N074V01'">{{eAppHardCopy?.productInfo?.UserPolicyTerm||""}}</strong>
+            </td>
+            <td><strong>{{eAppHardCopy?.productInfo?.UserPremiumPaymentTerm||""}}</strong></td>
+            <td><strong>{{eAppHardCopy?.productInfo?.UserApiResult?.sumAssured||eAppHardCopy?.productInfo?.UserApiResult?.annuityPayout||""}}</strong></td>
+            <td><strong>{{eAppHardCopy?.productInfo?.UserApiResult?.modalPremium_fstYr||eAppHardCopy?.productInfo?.UserApiResult?.purchasePriceIncTax||""}}</strong></td>
+            <td ng-if="eAppHardCopy.productInfo.sppPlanOption">{{eAppHardCopy?.productInfo?.sppPlanOption}} Life</td>
+            <td ng-if="!(eAppHardCopy.productInfo.sppPlanOption)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            
+            <td ng-if="userSelectedproductGuid == '140N075V01'">{{eAppHardCopy?.productInfo?.rakshakPayoutFrequency}} Income</td>
+            <td ng-if="userSelectedproductGuid=='140N074V01'">{{eAppHardCopy?.productInfo?.UserPaymentMode||""}}</td>
+            <td ng-if="userSelectedproductGuid=='140N071V01' && eAppHardCopy.productInfo.lumSumOnMaturity==0" style="font-size:11px;text-align:center"><span><strong>Income Benefit</strong></span></td>
+            <td ng-if="userSelectedproductGuid=='140N071V01' && eAppHardCopy.productInfo.lumSumOnMaturity==1" style="font-size:11px;text-align:center"><span><strong>Lump Sum Benefit</strong></span></td>
+            <td style="font-size:11px;" ng-if="userSelectedproductGuid=='140L070V01' && !monthlyPayout">
+                <span>{{eAppHardCopy?.productInfo?.weathMaximiser?.wealthEnhancerPlanType}}
+
+                </span></td>
+            <td style="font-size:11px;" ng-if="monthlyPayout">
+                <span>{{eAppHardCopy?.productInfo?.UserApiResult?.monthlyPayout ||'0'}}
+
+                </span></td>
+            <td style="font-size:11px;" ng-if="userSelectedproductGuid !='140L070V01' && !monthlyPayout && userSelectedproductGuid!='140N071V01' && userSelectedproductGuid != '140N075V01'">
+            </td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td><strong>{{eAppHardCopy?.productInfo?.adbRider?.RiderSelecedtab == "1"? 'ADB':''}}</strong></td>
+            <td><strong>{{eAppHardCopy?.productInfo?.adbRider?.RiderSelecedtab ==
+                    "1"?eAppHardCopy?.productInfo?.adbRider?.term:''}}</strong></td>
+            <td>-</td>
+            <td><strong>{{eAppHardCopy?.productInfo?.adbRider?.RiderSelecedtab ==
+                    "1"?eAppHardCopy?.productInfo?.adbRider?.SelectedSumAsssured:''}}</strong></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<p style="font-size:11px">2 Strategy and fund allocation (to be filled in case of ULIP)
+</p>
+
+
+<table style="border:none;font-size:11px" cellspacing="0" cellpadding="4">
+    <tbody>
+
+
+        <tr>
+            <td colspan="6" style="font-size: 11px">
+                <span>Please select Investment Strategy&nbsp;&nbsp;
+                </span>
+            </td>
+            <td style="font-size:11px;text-align:center">
+                <span><strong>{{investmentStrategy || ""}}</strong></span></td>
+        </tr>
+    </tbody>
+</table>
+
+<table>
+    <tr>
+        <td style="width:60%">
+            <table style="border: 1px solid #333;  border-collapse: collapse;font-size:11px" cellspacing="0" cellpadding="4" border="1">
+                <tbody>
+                    <tr>
+                        <td colspan="6">To be filled if Defined Portfolio Strategy is selected: Please select the proportion in which you wish to invest your premiums (%) as per the options available within the product chosen
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>Debt Fund</td>
+                        <td>Balance Fund</td>
+                        <td>Growth Fund</td>
+                        <td>Large Cap Equity Fund
+                        </td>
+                        <td>
+                            Multi Cap Opportunities Fund
+
+                        </td>
+                        <td>Total</td>
+                    </tr>
+                    <tr cellspacing='4'>
+                        <td>
+                            <strong>{{eAppHardCopy?.productInfo?.fundAllocation?.debtFund||''}}</strong>
+                        </td>
+                        <td>
+                            <strong>{{eAppHardCopy?.productInfo?.fundAllocation?.BalanceFund||''}}</strong>
+                        </td>
+                        <td>
+                            <strong>{{eAppHardCopy?.productInfo?.fundAllocation?.GrowthFund||''}}</strong>
+                        </td>
+                        <td>
+                            <strong>{{eAppHardCopy?.productInfo?.fundAllocation?.LargeCapEquityFund||''}}</strong>
+                        </td>
+                        <td>
+                            <strong>{{eAppHardCopy?.productInfo?.fundAllocation?.MultiCapEquityFund||''}}</strong>
+                        </td>
+                        <td>
+                            <strong>100%</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+
+        <td style="padding-left:10px">
+            <table style="border: 1px solid #333;border-collapse:collapse;font-size:11px;margin-top:-70px;margin-left:60px;" cellspacing="0" cellpadding="4" border="1">
+
+                <tbody>
+                    <tr>
+                        <td>Systematic Transfer Plan
+                        </td>
+                        <td><strong>{{eAppHardCopy?.productInfo?.fundAllocation?.STP?'Yes':'No'}}</strong></td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Single Premium Plan/<br>Regular/Limited Pay
+                        </td>
+                        <td><strong>{{eAppHardCopy?.productInfo?.fundAllocation?.STPDuration || 'NA'}}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<p style="font-size:11px">3 Details of Secondary Annuitant (to be filled incase of joint life annuity option)</p>
+
+<table style="width:100%; border-collapse:collapse; margin-top: 3px; margin-left: 7px;" cellspacing="0" cellpadding="2">
+    <tbody>
+        <tr>
+            <td style="font-size:11px">
+                Name:
+            </td>
+            <td style="font-size:11px;text-transform: capitalize;" colspan="5">
+                <strong ng-if="eAppHardCopy.productInfo.sppPlanOption == 'Joint'">{{eAppForm?.personalDtl?.customer?.dtl?.spouseName || ""}}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px">
+                Date of Birth:
+            </td>
+            <td style="font-size:11px;">
+                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.spouseDOB||""}}</strong>
+            </td>
+            <td style="font-size:11px">
+                Gender:
+            </td>
+            <td style="font-size:11px;">
+                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.spouseGender||''}}</strong></td>
+            <td style="font-size:11px">
+                Relationship With Primary Annuitant:
+            </td>
+            <td style="font-size:11px">
+                <strong>{{eAppForm?.personalDtl?.customer?.dtl?.spouseRelationship||""}}</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<p style="font-size:11px"><strong>Section XII: Premium Payment Details</strong>(Cheque/ DD made payable to "Pramerica Life Insurance Limited" Application / Policy No.__________)
+</p>
+<table style="width: 100%; margin-top:-15px;border: 1px solid #333;  border-collapse: collapse;" border="1" cellpadding="3">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;width:90%" colspan="3">
+                1<strong></strong> Method of Payment: &nbsp;&nbsp;&nbsp;<strong>{{eAppForm?.multipleInstruments[0]?.mode||'-'}}</strong>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px; width:30%">
+                2<strong></strong> Amount (in Rs): &nbsp;&nbsp;&nbsp;<strong>Rs.
+                    {{eAppForm?.multipleInstruments[0]?.amt||0}}</strong>
+            </td>
+
+            <td style="font-size:11px;width:30%">
+                3 <strong></strong> Cheque / DD No./Transaction I.D:&nbsp;&nbsp;&nbsp;<strong>{{eAppForm?.multipleInstruments[0]?.ddNo||""}}</strong>
+            </td>
+
+            <td style="font-size:11px;width:30%">
+                4 <strong></strong> Bank Name & Branch Address :&nbsp;&nbsp;&nbsp; <strong ng-if="eAppForm.multipleInstruments[0].mode!='Online'">{{LA?.paymentBankDetail||'-'}}<span><strong>&nbsp;&nbsp;
+                            {{LA?.bankBranch || ' '}}</strong></span>
+                </strong>
+            </td>
+
+
+           
+        </tr>
+        <tr>
+          <td style="font-size:11px; width:90%" colspan="3">
+              5 <strong></strong> Is the Premium paid by a person other than Proposer ?(If Yes, please submit third party declaration)&nbsp;&nbsp;&nbsp; <strong>{{eAppForm?.multipleInstruments[0]?.Name?'Yes': 'No'}}</strong>
+          </td>
+
+
+      </tr>
+      <tr>
+          <td style="font-size:11px;width:30%">
+              <p> Name:&nbsp;&nbsp;&nbsp;&nbsp;<strong>{{eAppForm?.multipleInstruments[0]?.Name||""}}</strong> </p>
+          </td>
+
+          <td style="font-size:11px;width:30%">
+              Relationship With Proposer: &nbsp;&nbsp;&nbsp;<strong> {{payment?.relationship[0]? payment?.relationship[0]:eAppForm?.multipleInstruments[0]?.relation ? eAppForm?.multipleInstruments[0]?.relation:''}}</strong>
+          </td>
+
+          <td style="font-size:11px; width:30%">
+              PAN No:&nbsp;&nbsp;&nbsp;<strong>
+              {{eAppForm?.multipleInstruments?.panNo ||""}}
+          </strong>
+          </td>
+
+      </tr>
+      <tr>
+          <td style="font-size:11px" colspan="3">
+              6 <strong></strong> Preference of Renewal Premium : &nbsp;&nbsp;&nbsp; <span style="font-size:11px" colspan='5' ng-if="eAppForm.multipleInstruments[0].mode =='Debit through bank'"><strong>{{eAppForm?.multipleInstruments[0]?.renewalmode}}</strong></span>
+              <span style="font-size:11px" colspan='5' ng-if="eAppForm.multipleInstruments[0].mode != 'Debit through bank'">
+                  <strong ng-if="userSelectedproductGuid=='140N074V01'"></strong>
+                  <strong ng-if="userSelectedproductGuid!='140N074V01'">ACH</strong>
+              </span>
+          </td>
+      </tr>
+    </tbody>
+</table>
+
+<p style="font-size:11px"><strong>Section XIII: Policy Payout Details</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Account Type:&nbsp;&nbsp;&nbsp;&nbsp;
+    <span><strong>{{eAppForm?.personalDtl?.accDetail?.accType==1?'Savings':
+            eAppForm?.personalDtl?.accDetail?.accType==2?'Current':
+            eAppForm?.personalDtl?.accDetail?.accType==3?'Other':'' }}</strong></span></p>
+
+<table style="width:100%;margin-top:-10px">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;width:15%">
+                Bank Name:
+            </td>
+            <td style="font-size:11px; text-transform: capitalize;">
+                <strong>
+                    {{LA?.accBankDetail||""}}
+                </strong>
+            </td>
+            <td style="font-size:11px;width:15%">
+
+                Branch Address:
+            </td>
+            <td style="font-size:11px; text-transform: capitalize;">
+                <strong>{{capital?.AccountDetail?.bankBranchName||""}}</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width:15%">
+                Account Holder's Name:
+
+            </td>
+            <td style="font-size:11px; text-transform: capitalize;"><strong>
+                    {{capital?.AccountDetail?.accHolderName||""}}</strong></td>
+            <td style="font-size:11px;width:15%">
+                Account Number:
+
+            </td>
+            <td style="font-size:11px"><strong>{{eAppForm?.personalDtl?.accDetail?.accNo||""}}</strong></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width:15%">
+                IFSC Code:
+
+            </td>
+            <td style="font-size:11px;text-transform: uppercase;"><strong>{{capital?.AccountDetail?.ifscCode||""}}</strong></td>
+            <td style="font-size:11px;width:15%">
+                MICR Code:
+            </td>
+            <td style="font-size:11px;text-transform: uppercase;"><strong>{{eAppForm?.personalDtl?.accDetail?.MICR ||
+                    eAppForm?.personalDtl?.accDetail?.micrCode||""}}</strong></td>
+        </tr>
+
+
+    </tbody>
+</table>
+
+<p style="font-size: 9px">
+    As per IRDAI guidelines all future policy payouts shall be made in above account via NEFT. In case you close your account in future, kindly update your new banking details with us to avoid any payout inconvenience. Original cancelled cheque leaf to be
+    enclosed / If cheque is not personalized please provide copy of latest bank statement in original or bank attested statement / passbook
+</p>
+
+<table style="margin-top:10px">
+    <tbody>
+        <tr>
+            <td style="font-size: 11px">
+                <strong>Section XIV: Declaration, Agreement & Authorization</strong>
+
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 10px;width: 95%">
+                <strong>DECLARATION:</strong> I ____________________________________________ have read this Application or got read/explained the Application, and furnished the information, after fully understanding the contents thereof. I/We have made
+                complete, true and accurate disclosure of all facts to the best of my knowledge and belief and that I/We have not withheld any information. I/We hereby declare that the money used by me/us to pay the premium under this Application has
+                not been derived from any criminal or illegal activity or any unknown sources. I hereby declare, on my behalf that the above statements, answers and/or particulars given by me are true and complete in all respects to the best of my knowledge
+                and that I am authorized to propose on Life Insured’s behalf. I understand that the information provided by me forms the basis of the insurance policy and that the policy is subject to the Board approved underwriting policy of Pramerica
+                Life Insurance Limited ('PLIL') and that the cover will come into force and effect only after full receipt of the premium chargeable and upon issuance of the policy. I further declare that I will notify PLIL in writing
+                of any change occurring in my occupation, financial health or general health after the proposal has been submitted but before communication of the risk acceptance by PLIL. I/We certify that I/We have provided the information
+                on this form and to the best of my/our knowledge and believe the certification is true, correct, and complete including the taxpayer identification number of the applicant.
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 10px;width: 95%; margin-top:10px">
+                <strong>AGREEMENT:</strong> I/We do hereby agree that My/Our answers and/or statements provided herein and this declaration shall form the basis of policy issued by PLIL. In case of fraud, misstatement and concealment of
+                material facts, contract shall be treated in accordance with Section 45 of the Insurance Act, 1938, as amended from time to time. If, after submission of this proposal and before issue of the policy, if an proposal for insurance
+                on the life of the Proposed Insured/Proposed Holder made to any other insurance company or an proposal of revival, has been withdrawn or dropped or accepted at an increased premium or on terms other than as originally proposed, I/We
+                shall forthwith intimate the same to PLIL in writing to reconsider the terms of acceptance of this proposal. The payment made along with the proposal is a deposit with PLIL to be adjusted towards premium in the
+                event of acceptance of the risk sought to be insured by me/us. Unless accepted, no risk shall attach to PLIL. In the event that the proposal is found acceptable, PLIL shall be entitled to issue the policy commencing
+                from any date subsequent to the date of submission of the proposal by me/us. I/we agree to undergo all medical tests required by PLIL as per its guidelines, including HIV-Elisa Test. The terms and conditions including the
+                premium and benefits under the policy are subject to tax/duties/charges as per the applicable law. The information provided under this proposal will be used for the purpose of underwriting this proposal and for providing policy related
+                services, in the event of the risk being accepted by PLIL. Any premium if paid by cash has to be paid only in PLIL branches and other authorized cash collection agencies against an official Receipt and not to PLIL's Financial Advisors/Broker /Corporate Agent. If it is paid to Financial Advisor/Broker/Corporate Agent for depositing with PLIL, then the Financial Advisor/Broker/Corporate Agent for this purpose is acting as my/our authorized
+                representative and not that of PLIL and PLIL shall not be liable for any loss incurred by me/us while doing so. The policy will lapse in case the premiums are not paid as per the frequency and policy term opted in this
+                form.
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 10px;width: 95%; margin-top:10px">
+                <strong>AUTHORIZATION:</strong> In order to enable the company to assess the risk under this proposal and anytime thereafter including at the time of claim processing, I/We hereby authorize the past and present employer(s), business
+                associates, any life and nonlife company, hospitals, nursing homes, organizations, banks, financial institutions, tax and other authority(ies) or any third party(ies) to release to the company or its authorized third party agents details
+                including but not limited to employment, business, financial, personal and medical records and provide such records or other details as may be considered relevant and further authorize the Company to obtain the same. I/we further consent
+                that the information in this proposal has been given by me/us voluntarily and for the purpose of completion/servicing of this proposal or the resulting policy.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table style="width:95%; margin-top:10px">
+    <tbody>
+        <tr>
+            <td>
+                __________________________
+            </td>
+            <td>
+                __________________________
+            </td>
+            <td>
+                __________________________
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 11px">
+                Signature / Thumb impression of Life Insured
+
+            </td>
+            <td style="font-size: 11px;">Signature / Thumb impression of Proposer
+
+            </td>
+            <td style="font-size: 11px;">
+                Signature / Thumb impression of Witness
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 11px">
+                Date: </td>
+            <td style="font-size: 11px;">
+                Date: </td>
+            <td style="font-size: 11px;">
+                Name of Witness:
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size: 11px">
+                Place:
+            </td>
+            <td style="font-size: 11px;">
+                Place:
+            </td>
+            <td style="font-size: 11px;">
+                Address of Witness:
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table style="margin-top:10px">
+    <tbody>
+        <tr>
+            <td style="font-size:11px">
+                <strong>Declaration for signing in vernacular language or for uneducated person
+                </strong>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;; width:90%">
+                I, (full name of declarant) ______________________________________ , hereby declare that I have explained the contents of the proposal form to the Life Insured / Proposer in ________________________ language & that I have read out the answers to the questions
+                dictated by me to the Life Insured / Proposer and that the Life Insured / Proposer has / have put his/her thumb impression after fully understanding the contents thereof.
+
+            </td>
+            <td></td>
+        </tr>
+
+    </tbody>
+</table>
+<table style="margin-top:10px">
+    <tbody>
+        <tr style="font-size:11px; border-top:1px solid #333; margin-top:20px">
+            <td style=" margin-top:20px;width:65%" colspan="2">
+                _________________________
+                <br> Signature of the Declarant
+            </td>
+            <td>
+                __________________________
+                <br> Signature / Thumb impression of Proposer
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;" colspan="2">Name ________________________</td>
+            <td style="font-size:11px;" colspan="2">Date ________________________</td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;" colspan="2">Address ________________________</td>
+            <td style="font-size:11px;" colspan="2">Place ________________________</td>
+        </tr>
+    </tbody>
+</table>
+<table style="margin-top:10px">
+    <tbody>
+        <tr>
+            <td style="font-size: 11px">
+                <strong>
+                    Section XV: The Insurance Laws, as amended from time to time
+
+                </strong>
+            </td>
+        </tr>
+
+        <tr>
+            <td style="font-size:11px;width: 95%">
+                Section 41 of the Insurance Act, 1938, as amended from time to time : (1) No person shall allow or offer to allow, either directly or indirectly, as an inducement to any person to take or renew or continue an insurance in respect of any kind of risk relating to lives or property in
+                India, any rebate of the whole or part of the commission payable or any rebate of premium shown on the policy, nor shall any person taking out or renewing or continuing a policy accept any rebate, except such rebate as may be allowed in
+                accordance with the published prospectus or tables of the insurer.' (2) Any person making default in complying with the provisions of this section shall be liable for a penalty which may extend to ten lakh rupees.
+                <br /> Section 45 of the Insurance Act, 1938, as amended from time to time: No policy of life insurance shall be called into question on any ground whatsoever after the expiry of three years from the date of policy. A policy of life insurance may be called into question at anytime within three years from the date of policy, on the ground of fraud or on the ground that any statement of or suppression of a fact material to
+                    the expectancy of the life of the insured was incorrectly made in the proposal or other document on the basis of which the policy was issued or revived or rider issued. The insurer shall have to communicate in writing to the insured
+                    or legal representatives or nominees or assignees of the insured, the grounds and materials on which such decision is based. No insurer shall repudiate a life insurance policy on the ground of fraud if the insured can prove that the
+                    misstatement or suppression of material fact was true to the best of his knowledge and belief or that there was no deliberate intention to suppress the fact or that such misstatement or suppression are within the knowledge of the insurer.
+                    In case of fraud, the onus of disproving lies upon the beneficiaries, in case the policyholder is not alive. In case of repudiation of the policy on the ground of misstatement or suppression of a material fact and not on the grounds
+                    of fraud, the premiums collected on the policy till the date of repudiation shall be paid. Nothing in this section shall prevent the insurer from calling for proof of age at any time if he is entitled to do so, and no policy shall
+                    be deemed to be called in question merely because the terms of the policy are adjusted on subsequent proof that the age of the life insured was incorrectly stated in the proposal. For complete details of the section and the definition
+                    of ‘date of policy’, please refer Section 45 of the Insurance Act, 1938, as amended from time to time.
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
+<table style="width:100%; margin-top:10px">
+    <tbody>
+        <tr>
+            <td style="font-size:11" colspan="2">
+                <strong>
+                    Section XVI: Sales Person / Agent Confidentiality Report
+                </strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; width: 90%" colspan="2">
+                I hereby declare that I have personally met the applicant, Life to be Insured, and the foregoing statements are true and correct to the best of my knowledge and enquiries made by me. I further state that the application form has been filled up by the
+                Proposer/person authorized by the Proposer after fully understanding the nature of the questions in the application form and importance of disclosing all the material information has been explained by me to the Proposer. I have also explained
+                the features and benefits of the plan and riders to the applicant.
+
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px; width: 90%;margin-top: 15px" style="float:right" colspan="2">
+                1<strong></strong> Do you know the Life to be Insured / Proposer. If Yes please provide relation: &nbsp;&nbsp;&nbsp;
+                <span ng-if='eAppForm.review.agentInfo'><strong>{{eAppForm?.review?.agentInfo
+                        || ' '}}</strong></span>
+                <span ng-if='!eAppForm.review.agentInfo'><strong>_________________________</strong></span>
+
+            </td>
+            <td style="font-size:11px;text-align:right"><strong>{{eAppForm?.review?.agentInfo?'Yes':'No'}}</strong></td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width:90%" style="float:right" colspan="2">
+                2<strong>
+
+                </strong>Is the Life to be Insured physically handicapped / mentally retarded / has history of any illness / surgery or any medical investigations?
+
+
+            </td>
+            <td style="font-size:11px;text-align:right"><strong> {{eAppForm?.review?.agentRelatedTwo?'Yes': 'No'}}</strong></td>
+        </tr>
+        <tr>
+
+            <td style="font-size:11px;width:90%" style="float:right" colspan="2">
+                3<strong>
+
+                </strong>Any other material information that may impact the company's underwriting decision?
+
+            </td>
+            <td style="font-size:11px;text-align:right"><strong>{{eAppForm?.review?.agentMaterialInformation || ''}}</strong></td>
+        </tr>
+        <tr>
+
+            <td style="font-size:11px;width:90%" style="float:right" colspan="2">
+                4<strong>
+
+                </strong>I confirm that the application form was signed by <span ng-if="!ProposerExist"><strong>{{eAppForm?.personalDtl?.customer?.dtl?.title || ""}}&nbsp;{{capital?.LA?.fName||""}}
+                            &nbsp;{{capital?.LA?.lName}}</strong></span> <span ng-if="ProposerExist">
+                            <strong>{{eAppForm?.otherMemberDtl?.customer?.dtl?.title ||
+                                ""}}&nbsp;{{capital?.Proposer?.fName||""}}&nbsp;{{capital?.Proposer?.lName}}</strong>
+                        </span>, in front of me and I have verified it with the proof of signature submitted by the customer.
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table style="margin-top:10px" cellspacing="0" cellpadding="4">
+    <tbody>
+        <tr>
+            <td style="font-size:11px;width: 50%">
+                Signature of Sales Person :
+            </td>
+            <td style="font-size:11px;">
+                Signature of Supervisor :
+            </td>
+
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 50%">
+                Name of Sales Person :
+            </td>
+            <td style="font-size:11px">
+                Name of Supervisor :
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 50%">
+                Code & Designation :
+            </td>
+            <td style="font-size:11px">
+                Code & Designation:
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 50%">
+                Date :
+            </td>
+            <td style="font-size:11px">
+                Date:
+            </td>
+        </tr>
+        <tr>
+            <td style="font-size:11px;width: 50%">
+                Place :
+            </td>
+
+            <td style="font-size:11px">
+                Place:
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- <br> -->
+    <table>
+        <tbody>
+            <tr>
+                <td style="font-size:11px;border: 1px solid #333; width:90%;padding:3px">
+                    IRDAI Registration No. 140. Registered Office and Communication Address: 4th Floor, Building No. 9, Tower B, Cyber City, DLF City Phase III, Gurgaon - 122002, Haryana. CIN: U66000HR2007PLC052028. Customer Service Helpline (Toll Free): 1800 102 7070, Email: contactus@pramericalife.in. Website: www.pramericalife.in. The Pramerica mark displayed belongs to ‘The Prudential Insurance Company of America’ and is used by Pramerica Life Insurance Limited under license.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+<div ng-if="isFatcaLA" ng-include="'templates/eApplication/paymentDetails/pdfs/fatcaLa.html'"></div>
+<div ng-if="isFatcaProposer" ng-include="'templates/eApplication/paymentDetails/pdfs/fatcaProposer.html'">
+</div>
+
+</div>
+<div>
+  <ion-button (click)="downloadInvoice()">Download PDF</ion-button>
+</div>
 
 </ion-content>

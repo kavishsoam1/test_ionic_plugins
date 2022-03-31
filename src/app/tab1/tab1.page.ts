@@ -18,16 +18,15 @@ export class Tab1Page implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('payment');
-    var unformatedAmount = 2; //on uat
-    var action =
-      'makePayment|' +
-      '1234' +
-      '|' +
-      unformatedAmount +
-      '|https://dengueshield.pramericalife.in/Home/mobileappupdatetransaction';
-    payment.makePayment(action, this.success(''), this.failed(''));
-
+    // console.log('payment');
+    // var unformatedAmount = 2; //on uat
+    // var action =
+    //   'makePayment|' +
+    //   '1234' +
+    //   '|' +
+    //   unformatedAmount +
+    //   '|https://dengueshield.pramericalife.in/Home/mobileappupdatetransaction';
+    // payment.makePayment(action, this.success(''), this.failed(''));
     // const configObj = {
     //   demoAppKey: '04415207-91c7-4057-b5b3-69edda77357e',
     //   prodAppKey: '04415207-91c7-4057-b5b3-69edda77357e', //check key for prod
@@ -38,13 +37,11 @@ export class Tab1Page implements OnInit {
     //   captureSignature: 'false',
     //   prepareDevice: 'false',
     // };
-
     // const customerObj = {
     //   name: 'Kavish',
     //   mobileNo: '1234567890',
     //   email: 'abc@gmail.com',
     // };
-
     // const referencesObj = {
     //   reference1: 'qweqweqweddfew',
     //   reference2: 'er2jndjewq3',
@@ -73,16 +70,25 @@ export class Tab1Page implements OnInit {
     var unformatedAmount = 2; //on uat
     var action =
       'makePayment|' +
-      '1234' +
+      '1234kavish4321' +
       '|' +
       unformatedAmount +
-      '|https://dengueshield.pramericalife.in/Home/mobileappupdatetransaction';
-    payment.makePayment(action, this.success(''), this.failed(''));
+      '|https://aceappuatpg.pramericalife.in/mobileappupdatetransaction';
+    payment.makePayment(
+      action,
+      (data: any) => {
+        console.log(data);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
     console.log(payment);
   }
 
-  success(response) {
+  success(response?) {
     console.log(response);
+    console.log(response?.Data);
     // $(".blockOverlay").css("display", "block");
     // console.log("savePaymentGatwayResponse successss::::::::", response.Data);
     // //response.Data = ''; // only for testing remove when testing is over -> Nidhi
@@ -95,5 +101,7 @@ export class Tab1Page implements OnInit {
     // }, 100);
   }
 
-  failed(error) {}
+  failed(error?) {
+    console.log(error);
+  }
 }
